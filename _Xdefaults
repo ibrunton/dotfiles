@@ -1,0 +1,21 @@
+urxvt.title: urxvt
+urxvt.foreground: White
+urxvt.borderColor: #555555
+urxvt.internalBorder: 0
+urxvt.eXTernalBorder: 0
+urxvt.scrollBar_right: false
+urxvt.scrollBar: false
+urxvt.transparent: true
+urxvt.shading: 40
+urxvt.depth: 32
+urxvt.background: rgba:0000/0000/0000/bbbb
+
+urxvt.color12: #1181ff
+
+urxvt.font: xft:Courier New:size=12
+
+urxvt.perl-ext: default,url-select
+urxvt.keysym.M-u: perl:url-select:select_next
+urxvt.urlLauncher: firefox
+urxvt.underlineURLs: true
+

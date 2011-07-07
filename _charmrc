@@ -1,0 +1,2 @@
+hlogin = wolfshift 34cf479d0276018d4162eef67bf5b4e8
+editor = vim -c 'set et noai spell'

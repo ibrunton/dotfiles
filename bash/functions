@@ -1,0 +1,18 @@
+#!/bin/bash
+
+function mach() {
+    echo -e "\nMachine information:" ; uname -a
+    echo -e "\nUsers logged on:" ; w -h
+    echo -e "\nCurrent date :" ; date
+    echo -e "\nMachine status :" ; uptime
+    echo -e "\nMemory status :" ; free
+    echo -e "\nFilesystem status :"; df -h
+}
+
+function mkcd() { mkdir "$@" && cd "$@"; }
+function cls() { cd "$@" && ls; }
+function gq() { geeqie "$@" 2>/dev/null & }
+
+function ali() {
+  alias -p | sed 's/alias -=/alias -- -=/' > $HOME/.bash/aliases
+}
