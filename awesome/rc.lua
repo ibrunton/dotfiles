@@ -120,11 +120,11 @@ mytextclock = awful.widget.textclock({ align = "right" }, " %a %d %b %H:%M ", 5)
 -- NB: passing nil as 4th argument results in instantaneous updating,
 -- but at a performance penalty for awesome overall.
 mygmail1 = widget({ type = "textbox" })
-vicious.register(mygmail1, vicious.widgets.gmail, " ian: ${count} ", 300)
+vicious.register(mygmail1, vicious.widgets.gmail_custom, " ian: ${count} ", 300, "/home/ian/.config/gmail_i_rc")
 
 -- customised version of the above widget to use a specified netrc file:
 mygmail2 = widget({ type = "textbox" })
-vicious.register(mygmail2, vicious.widgets.gmail_custom, " wolf: ${count} ", 300, "/home/ian/.netrc2")
+vicious.register(mygmail2, vicious.widgets.gmail_custom, " wolf: ${count} ", 300, "/home/ian/.config/gmail_w_rc")
 
 -- CPU meter
 mycpu = widget({ type = "textbox" })
