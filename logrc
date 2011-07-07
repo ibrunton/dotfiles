@@ -1,0 +1,15 @@
+log_dir=$HOME/Dropbox/docs/log/
+snippet_dir=$HOME/Dropbox/docs/log/.snippets/
+editor="vim -c 'set tw=72'"
+alternate_editor="emacsclient -t"
+#tags_off=true
+tag:comment='[38;5;172m'
+tag:date='[38;5;32m'
+tag:t="[38;5;106m"
+tag:h="[1;38;5;226m"
+tag:d="[1;38;5;124m"
+tag:e="[38;5;124m"
+tag:c="[38;5;69m"
+tag:o="[1;38;5;93m"
+tag:x="[1;38;5;93m"
+tag:n="[38;5;36m"
