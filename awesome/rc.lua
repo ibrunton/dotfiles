@@ -134,6 +134,9 @@ vicious.register(mycpu, vicious.widgets.cpu, " cpu: $1% ")
 myfs = widget({ type = "textbox" })
 vicious.register(myfs, vicious.widgets.fs, " root: ${/ used_p}% home: ${/home used_p}% ")
 
+-- network traffic
+--netwidget = widget({ type = "textbox" })
+--vicious.register(netwidget, vicious.widgets.net, '<span color="#CC9393">${eth0 down_kb}</span> <span color="#7F9F7F">${eth0 up_kb}</span>', 3)
 -- MPD
 -- mympd = widget({ type = "textbox" })
 -- vicious.register(mympd, vicious.widgets.mpd, "")
@@ -225,6 +228,7 @@ for s = 1, screen.count() do
         s == 1 and mysystray or nil,
 	mygmail1,
 	mygmail2,
+	--netwidget,
 	myfs,
 	mycpu,
         mytasklist[s],
