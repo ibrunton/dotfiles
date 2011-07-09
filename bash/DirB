@@ -1,26 +1,28 @@
 # Directory Bookmarks for BASH (c) 2009, Ira Chayut, Version 090927
 #
-# To use, save this file as ~/.bashDirB and add the following line to ~/.bashrc:
+# To use, save this file as ~/.bas$DIRB and add the following line to ~/.bashrc:
 #
-#        source ~/.bashDirB
+#        source ~/.bas$DIRB
 #
-# DirB and its implementation in this file are the product of, and
+#$DIRB and its implementation in this file are the product of, and
 # copyrighted by Ira Chayut.  You are granted a non-exclusive, royalty-free
-# license to use, reproduce, modify and create derivative works from DirB; 
-# providing that credit is given to DirB as a source material.
+# license to use, reproduce, modify and create derivative works from$DIRB; 
+# providing that credit is given to$DIRB as a source material.
 #
-# The lastest version is available from: http://www.dirb.info/bashDirB.  Ira can
+# The lastest version is available from: http://www.dirb.info/bas$DIRB.  Ira can
 # be reached at ira@dirb.info.  
 #
-# By default DirB will have the shell echo the current working directory out
+# By default$DIRB will have the shell echo the current working directory out
 # to the title bars of Xterm windows.  To disable this behavior, comment
 # out the next line.
 #PS1="\[\033]0;\w\007\]\t \!> "
 
 # If the repository of bookmarks does not exist, create it
-if  [ ! -e ~/.DirB ]
+DIRB=${DIRB:-"~/$DIRB"}
+
+if  [ ! -e $DIRB ]
 then
-    mkdir ~/.DirB
+    mkdir $DIRB
 fi
 
 # "s" - Save bookmark
@@ -28,11 +30,11 @@ function s () {
     if [ -n "$2" ]
     then
         # build the bookmark file with the contents "$CD directory_path"
-        ( echo '$CD ' \"$2\" > ~/.DirB/"$1" ;) > /dev/null 2>&1
+        ( echo '$CD ' \"$2\" > $DIRB/"$1" ;) > /dev/null 2>&1
     else
         # build the bookmark file with the contents "$CD directory_path"
-        ( echo -n '$CD ' > ~/.DirB/"$1" ; 
-          pwd | sed "s/ /\\\\ /g" >> ~/.DirB/"$1" ; ) > /dev/null 2>&1
+        ( echo -n '$CD ' > ~/$DIRB/"$1" ; 
+          pwd | sed "s/ /\\\\ /g" >> $DIRB/"$1" ; ) > /dev/null 2>&1
 
     fi
 
@@ -40,7 +42,7 @@ function s () {
     # exit with a failing return code
     if [ $? != 0 ]
     then
-        echo bash: DirB: ~/.DirB/"$1" could not be created >&2
+        echo bash:$DIRB: $DIRB/"$1" could not be created >&2
         false
     fi
 }
@@ -52,12 +54,12 @@ function g () {
     then
         cd
     else
-        # if $1 is in ~/.DirB and does not begin with ".", then go to it
-        if [ -f ~/.DirB/"$1" -a ${1:0:1} != "." ]
+        # if $1 is in ~/$DIRB and does not begin with ".", then go to it
+        if [ -f $DIRB/"$1" -a ${1:0:1} != "." ]
         then 
             # update the bookmark's timestamp and then execute it
-            touch ~/.DirB/"$1" ; 
-            CD=cd source ~/.DirB/"$1" ; 
+            touch $DIRB/"$1" ; 
+            CD=cd source $DIRB/"$1" ; 
         # else just do a "cd" to the argument, usually a directory path of "-"
         else
             cd "$1"
@@ -83,12 +85,12 @@ function p () {
         popd > /dev/null
         dirs -p
     else
-        # if $1 is in ~/.DirB and does not begin with ".", then go to it
+        # if $1 is in ~/$DIRB and does not begin with ".", then go to it
         # and then print out the directory stack
-        if [ -f ~/.DirB/"$1" -a "${1:0:1}" != "." ]
+        if [ -f $DIRB/"$1" -a "${1:0:1}" != "." ]
             then
-                touch ~/.DirB/$1 ; 
-                CD=pushd source ~/.DirB/$1 > /dev/null && dirs -p ; 
+                touch $DIRB/$1 ; 
+                CD=pushd source $DIRB/$1 > /dev/null && dirs -p ; 
 
         # else just do a "pushd" and print out the directory stack
         else
@@ -105,7 +107,7 @@ function sl () {
     if [ "$1" == "-l" ]
     then
         shift
-        ( cd ~/.DirB ;
+        ( cd $DIRB ;
         ls -lt $* | 
             sed -e 's/  */ /g' -e '/^total/d' \
                 -e 's/^\(... \)\([0-9] \)/\1 \2/' | 
@@ -113,20 +115,20 @@ function sl () {
 
     # else print the short form of the bookmarks in reverse time order
     else
-        ( cd ~/.DirB ; ls -xt $* ; )
+        ( cd $DIRB ; ls -xt $* ; )
     fi
 }
 
 # "r" - Remove a saved bookmark
 function r () { 
     # if the bookmark file exists, remove it
-    if [ -e ~/.DirB/"$1" ]
+    if [ -e $DIRB/"$1" ]
     then
-        rm ~/.DirB/"$1"
+        rm $DIRB/"$1"
 
     # if the bookmark file does not exist, complain and exit with a failing code
     else
-        echo bash: DirB: ~/.DirB/"$1" does not exist >&2
+        echo bash:$DIRB: $DIRB/"$1" does not exist >&2
         false
     fi
 }
@@ -135,13 +137,13 @@ function r () {
 # to use: cd "$(d xxx)"
 function d () {  
     # if the bookmark exists, then extract its directory path and print it
-    if [ -e ~/.DirB/"$1" ]
+    if [ -e $DIRB/"$1" ]
     then
-        sed -e 's/\$CD //' -e 's/\\//g' ~/.DirB/"$1"
+        sed -e 's/\$CD //' -e 's/\\//g' $DIRB/"$1"
 
     # if the bookmark does not exists, complain and exit with a failing code
     else
-        echo bash: DirB: ~/.DirB/"$1" does not exist >&2
+        echo bash:$DIRB: $DIRB/"$1" does not exist >&2
         false
     fi
 }

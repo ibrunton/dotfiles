@@ -18,6 +18,7 @@ done
 
 export PATH=$PATH:/home/ian/bin
 export EDITOR=vim
+export DIRB=$XDG_DATA_HOME/DirB
 
 shopt -s histappend
 export HISTCONTROL=ignoreboth		# no duplicates or empty lines
