@@ -1,15 +1,15 @@
 # Directory Bookmarks for BASH (c) 2009, Ira Chayut, Version 090927
 #
-# To use, save this file as ~/.bas$DIRB and add the following line to ~/.bashrc:
+# To use, save this file as ~/.bashDirB and add the following line to ~/.bashrc:
 #
-#        source ~/.bas$DIRB
+#        source ~/.bashDirB
 #
 #$DIRB and its implementation in this file are the product of, and
 # copyrighted by Ira Chayut.  You are granted a non-exclusive, royalty-free
 # license to use, reproduce, modify and create derivative works from$DIRB; 
 # providing that credit is given to$DIRB as a source material.
 #
-# The lastest version is available from: http://www.dirb.info/bas$DIRB.  Ira can
+# The lastest version is available from: http://www.dirb.info/bashDirB.  Ira can
 # be reached at ira@dirb.info.  
 #
 # By default$DIRB will have the shell echo the current working directory out
@@ -18,7 +18,11 @@
 #PS1="\[\033]0;\w\007\]\t \!> "
 
 # If the repository of bookmarks does not exist, create it
-DIRB=${DIRB:-"~/$DIRB"}
+
+# Modified 2011-07-08 by Ian Brunton to use an environment variable, $DIRB,
+# which can be set in ~/.bashrc, or use the default setting.
+
+DIRB=${DIRB:-"~/.DirB"}
 
 if  [ ! -e $DIRB ]
 then
