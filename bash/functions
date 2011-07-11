@@ -14,5 +14,9 @@ function cls() { cd "$@" && ls; }
 function gq() { geeqie "$@" 2>/dev/null & }
 
 function ali() {
-  alias -p | sed 's/alias -=/alias -- -=/' > $HOME/.bash/aliases
+  alias -p | sed 's/alias -=/alias -- -=/' > $HOME/.config/bash/aliases
+}
+
+function golog() {
+  cd $(clog -df)
 }
