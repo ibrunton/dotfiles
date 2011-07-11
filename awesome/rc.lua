@@ -15,7 +15,9 @@ require("gmail")
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/home/ian/.config/awesome/themes/default/theme.lua")
+hostname = os.execute("uname -n")
+
+beautiful.init("/home/ian/.config/awesome/themes/" .. hostname .. "/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "urxvt"
@@ -49,11 +51,17 @@ layouts =
 
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
-tags = {
-    names = { "term", "web", "xedr", "work", "etc" },
-    layout = { layouts[2], layouts[2], layouts[1], layouts[1], layouts[1] }
-    --layout = { vain.layout.uselessfair, vain.layout.browse, layouts[1], layouts[1], layouts[1] }
-}
+if hostname == "phoenix" then
+    tags = {
+	names = { "term", "web", "xedr", "work", "etc" },
+	layout = { layouts[2], layouts[2], layouts[1], layouts[1], layouts[1] }
+    }
+elseif hostname == "laptop" then
+    tags = {
+	names = { "1", "2", "3", "4" },
+	layout = { layouts[2], layouts[2], layouts[1], layouts[1] }
+    }
+end
 
 -- vain settings:
 --awful.tag.setnmaster(2, tags[1][1])
@@ -137,9 +145,10 @@ vicious.register(myfs, vicious.widgets.fs, " root: ${/ used_p}% home: ${/home us
 -- network traffic
 --netwidget = widget({ type = "textbox" })
 --vicious.register(netwidget, vicious.widgets.net, '<span color="#CC9393">${eth0 down_kb}</span> <span color="#7F9F7F">${eth0 up_kb}</span>', 3)
--- MPD
--- mympd = widget({ type = "textbox" })
--- vicious.register(mympd, vicious.widgets.mpd, "")
+
+-- battery monitor
+batterywidget = widget({ type = "textbox" })
+vicious.register(batterywidget, vicious.widgets.bat, " $1 $2 ($3) ", "BAT0")
 
 -- separator
 separator = widget({ type = "textbox" })
@@ -229,6 +238,7 @@ for s = 1, screen.count() do
 	mygmail1,
 	mygmail2,
 	--netwidget,
+	hostname == "laptop" and batterywidget or nil,
 	myfs,
 	mycpu,
         mytasklist[s],
