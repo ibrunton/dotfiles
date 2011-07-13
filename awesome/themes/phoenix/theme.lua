@@ -14,12 +14,12 @@ theme.font          = "terminus 8"
 
 theme.bg_normal     = "#05112190" --222222
 theme.bg_focus      = "#1793d190" --"#535d6c"
-theme.bg_urgent     = "#ff0000"
+theme.bg_urgent     = "#ffffff"
 theme.bg_minimize   = "#44444490"
 
 theme.fg_normal     = "#aaaaaa"
 theme.fg_focus      = "#ffffff"
-theme.fg_urgent     = "#ffffff"
+theme.fg_urgent     = "#000000"
 theme.fg_minimize   = "#ffffff"
 
 theme.border_width  = "1"

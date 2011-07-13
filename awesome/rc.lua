@@ -8,9 +8,7 @@ require("beautiful")
 require("naughty")
 -- Widget library
 require("vicious")
--- Vain library
---require("vain")
---vain.widgets.terminal = "urxvt"
+-- customised version of vicious gmail widget
 require("gmail")
 
 -- {{{ Variable definitions
@@ -62,9 +60,6 @@ elseif hostname == "laptop" then
 	layout = { layouts[2], layouts[2], layouts[1], layouts[1] }
     }
 end
-
--- vain settings:
---awful.tag.setnmaster(2, tags[1][1])
 
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
