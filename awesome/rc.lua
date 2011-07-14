@@ -12,9 +12,18 @@ require("vicious")
 require("gmail")
 
 -- {{{ Variable definitions
--- Themes define colours, icons, and wallpapers
-hostname = os.execute("uname -n")
+-- get hostname so can use same git repo for multiple machines
+desktop_hostname = "phoenix"
+laptop_hostname = "eliyahu"
 
+n = os.tmpname()
+os.execute("uname -n > " .. n)
+for line in io.lines (n) do
+    hostname = line
+end
+os.remove(n)
+
+-- Themes define colours, icons, and wallpapers
 beautiful.init("/home/ian/.config/awesome/themes/" .. hostname .. "/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
@@ -49,12 +58,12 @@ layouts =
 
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
-if hostname == "phoenix" then
+if hostname == desktop_hostname then
     tags = {
 	names = { "term", "web", "xedr", "work", "etc" },
 	layout = { layouts[2], layouts[2], layouts[1], layouts[1], layouts[1] }
     }
-elseif hostname == "laptop" then
+elseif hostname == laptop_hostname then
     tags = {
 	names = { "1", "2", "3", "4" },
 	layout = { layouts[2], layouts[2], layouts[1], layouts[1] }
@@ -83,8 +92,8 @@ myawesomemenu = {
 }
 
 myofficemenu = {
-   { "libreoffice writer", "lowriter" },
-   { "libreoffice calc", "localc" },
+   { "writer", "lowriter" },
+   { "calc", "localc" },
    { "okular", "okular" }
 }
 
@@ -233,7 +242,7 @@ for s = 1, screen.count() do
 	mygmail1,
 	mygmail2,
 	--netwidget,
-	hostname == "laptop" and batterywidget or nil,
+	hostname == laptop_hostname and batterywidget or nil,
 	myfs,
 	mycpu,
         mytasklist[s],

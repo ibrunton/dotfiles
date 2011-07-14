@@ -102,7 +102,7 @@ theme.layout_spiral  = "/usr/share/awesome/themes/default/layouts/spiralw.png"
 theme.layout_dwindle = "/usr/share/awesome/themes/default/layouts/dwindlew.png"
 
 --theme.awesome_icon = "/usr/share/awesome/icons/awesome16.png"
-theme.awesome_icon = "/home/ian/.config/awesome/themes/default/arch16.png"
+theme.awesome_icon = "/home/ian/.config/awesome/themes/phoenix/arch16.png"
 
 return theme
 -- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:encoding=utf-8:textwidth=80
