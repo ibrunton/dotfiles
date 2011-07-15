@@ -157,10 +157,10 @@
         mouse_button_tag_prev      = "5"
 
         [tag]
-                name             = "web"
+                name             = "term"
 		clients		 = {"firefox-nightly"}
                 screen           = 0
-                mwfact           = 0.65
+                mwfact           = 0.5
                 nmaster          = 1
                 layout           = "tile_right"
                 resizehint       = false
@@ -168,11 +168,18 @@
                 above_fc         = false
         [/tag]
 
-	[tag] name = "music" [/tag]
-        [tag] name = "p2p" [/tag]
-        [tag] name = "irc"  [/tag]
-        [tag] name = "work" [/tag]
-        [tag] name = "pr0n" [/tag]
+	[tag]
+		name	= "edit"
+		layout	= "tile_right"
+	[/tag]
+        [tag]
+		name	= "www"
+		mwfact	= 0.65
+		layout	= "tile_right"
+	[/tag]
+        [tag] name = "mail"  [/tag]
+        [tag] name = "four" [/tag]
+        [tag] name = "five" [/tag]
 [/tags]
 
 [root]
@@ -390,10 +397,10 @@
         [key] mod = {"Control", "Alt", "Shift"} key = "q" func = "quit" [/key]
 
         # Swap current client with the next.
-        [key] mod = {"Mod4"} key = "j" func = "client_swap_next" [/key]
+        [key] mod = {"Mod4","Shift"} key = "j" func = "client_swap_next" [/key]
 
         # Swap current client with the previous.
-        [key] mod = {"Mod4"} key = "k" func = "client_swap_prev" [/key]
+        [key] mod = {"Mod4","Shift"} key = "k" func = "client_swap_prev" [/key]
         
         # Set the selected client as Master
         [key] mod = {"mod4","Control"} key = "m" func = "client_set_master" [/key]
@@ -451,7 +458,7 @@
         [key] mod = {"Alt", "Shift"} key = "d" func = "set_nmaster" cmd = "-1" [/key]
 
         #Launcher.
-        [key] mod = {"Alt"} key = "p" func = "launcher" cmd = "launcher_exec" [/key]
+        [key] mod = {"Mod4"} key = "p" func = "launcher" cmd = "launcher_exec" [/key]
 
         #ViWMFS
         [key] mod = {"Alt"} key = "Escape" func = "launcher" cmd = "viwmfs" [/key]
