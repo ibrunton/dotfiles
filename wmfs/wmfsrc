@@ -77,35 +77,35 @@
         # Tiling layouts.
         [layout] 
 		type = "tile_right"
-		symbol = "       \i[3;4;15;13;/home/johan/.config/wmfs/icons/tr.png]\"    
+		symbol = "       \i[3;4;15;13;/home/ian/.config/wmfs/icons/tr.png]\"    
 	[/layout]
         [layout] type = "tile_left"          
-		 symbol = "       \i[3;4;15;13;/home/johan/.config/wmfs/icons/tl.png]\"    
+		 symbol = "       \i[3;4;15;13;/home/ian/.config/wmfs/icons/tl.png]\"    
 	[/layout]
         [layout] type = "tile_top"           
-		 symbol = "       \i[3;4;15;13;/home/johan/.config/wmfs/icons/tt.png]\"
+		 symbol = "       \i[3;4;15;13;/home/ian/.config/wmfs/icons/tt.png]\"
 	[/layout]
         [layout] type = "tile_bottom"        
-		 symbol = "       \i[3;4;15;13;/home/johan/.config/wmfs/icons/tb.png]\"
+		 symbol = "       \i[3;4;15;13;/home/ian/.config/wmfs/icons/tb.png]\"
 	[/layout]
         [layout] type = "tile_grid"          
-		 symbol = "       \i[3;4;15;13;/home/johan/.config/wmfs/icons/tg.png]\"
+		 symbol = "       \i[3;4;15;13;/home/ian/.config/wmfs/icons/tg.png]\"
 	[/layout]
         [layout] type = "tile_grid_vertical" 
-		 symbol = "       \i[3;4;15;13;/home/johan/.config/wmfs/icons/la.png]\"
+		 symbol = "       \i[3;4;15;13;/home/ian/.config/wmfs/icons/la.png]\"
 	[/layout]
         [layout] type = "mirror_vertical"    
-		 symbol = "       \i[3;4;15;13;/home/johan/.config/wmfs/icons/mv.png]\"
+		 symbol = "       \i[3;4;15;13;/home/ian/.config/wmfs/icons/mv.png]\"
 	[/layout]
         [layout] type = "mirror_horizontal"  
-		 symbol = "       \i[3;4;15;13;/home/johan/.config/wmfs/icons/mh.png]\"
+		 symbol = "       \i[3;4;15;13;/home/ian/.config/wmfs/icons/mh.png]\"
 	[/layout]
 
         [layout] type = "max"   
-		 symbol = "       \i[3;4;15;13;/home/johan/.config/wmfs/icons/max.png]\"
+		 symbol = "       \i[3;4;15;13;/home/ian/.config/wmfs/icons/max.png]\"
 	[/layout]
         [layout] type = "free"  
-		 symbol = "       \i[3;3;15;13;/home/johan/.config/wmfs/icons/fr.png]\"
+		 symbol = "       \i[3;3;15;13;/home/ian/.config/wmfs/icons/fr.png]\"
 	[/layout]
 
 [/layouts]
@@ -169,7 +169,7 @@
         [/tag]
 
 	[tag]
-		name	= "edit"
+		name	= "emc"
 		layout	= "tile_right"
 	[/tag]
         [tag]
@@ -178,8 +178,8 @@
 		layout	= "tile_right"
 	[/tag]
         [tag] name = "mail"  [/tag]
-        [tag] name = "four" [/tag]
-        [tag] name = "five" [/tag]
+        [tag] name = "work" [/tag]
+        [tag] name = "chat" [/tag]
 [/tags]
 
 [root]
@@ -412,8 +412,8 @@
         [key] mod = {"Mod4"} key = "f" func = "toggle_free" [/key]
 
         # Toggle the position of the infobar.
-        [key] mod = {"Alt"} key = "b" func = "toggle_infobar_position" [/key]
-        [key] mod = {"Alt", "Shift"} key = "b" func = "toggle_infobar_display" [/key]
+        #[key] mod = {"Alt"} key = "b" func = "toggle_infobar_position" [/key]
+        #[key] mod = {"Alt", "Shift"} key = "b" func = "toggle_infobar_display" [/key]
 
         # Toggle the resizehint of the current tag/screen
         [key] mod = {"Shift", "Control"} key = "r" func = "toggle_resizehint" [/key]
@@ -424,9 +424,11 @@
         # Select the next client.
         [key] mod = {"Alt"} key = "Tab" func = "client_next" [/key]
         [key] mod = {"Mod4"} key = "j" func = "client_next" [/key]
+
         # Select the previous client.
         [key] mod = {"Alt","Shift"} key = "Tab" func = "client_prev" [/key]
         [key] mod = {"Mod4"} key = "k" func = "client_prev" [/key]
+
         # Select the next tag.
         [key] mod = {"Mod4"} key = "Right" func = "tag_next" [/key]
 
@@ -452,13 +454,13 @@
         [key] mod = {"Mod4"} key = "h" func = "set_mwfact" cmd = "-0.025" [/key]
 
         # Increase nmaster.
-        [key] mod = {"Alt"} key = "d" func = "set_nmaster" cmd = "+1" [/key]
+        [key] mod = {"Mod4"} key = "d" func = "set_nmaster" cmd = "+1" [/key]
 
         # Decease nmaster.
-        [key] mod = {"Alt", "Shift"} key = "d" func = "set_nmaster" cmd = "-1" [/key]
+        [key] mod = {"Mod4", "Shift"} key = "d" func = "set_nmaster" cmd = "-1" [/key]
 
         #Launcher.
-        [key] mod = {"Mod4"} key = "p" func = "launcher" cmd = "launcher_exec" [/key]
+        [key] mod = {"Mod4"} key = "r" func = "launcher" cmd = "launcher_exec" [/key]
 
         #ViWMFS
         [key] mod = {"Alt"} key = "Escape" func = "launcher" cmd = "viwmfs" [/key]
