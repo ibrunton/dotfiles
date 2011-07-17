@@ -178,8 +178,14 @@
 		layout	= "tile_right"
 	[/tag]
         [tag] name = "mail"  [/tag]
-        [tag] name = "work" [/tag]
-        [tag] name = "chat" [/tag]
+        [tag]
+		name	= "work"
+		layout	= "free"
+	[/tag]
+        [tag]
+		name	= "chat"
+		layout	= "free"
+	[/tag]
 [/tags]
 
 [root]
