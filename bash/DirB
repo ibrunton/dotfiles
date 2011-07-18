@@ -37,7 +37,7 @@ function s () {
         ( echo '$CD ' \"$2\" > $DIRB/"$1" ;) > /dev/null 2>&1
     else
         # build the bookmark file with the contents "$CD directory_path"
-        ( echo -n '$CD ' > ~/$DIRB/"$1" ; 
+        ( echo -n '$CD ' > $DIRB/"$1" ; 
           pwd | sed "s/ /\\\\ /g" >> $DIRB/"$1" ; ) > /dev/null 2>&1
 
     fi
