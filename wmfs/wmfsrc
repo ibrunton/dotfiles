@@ -103,7 +103,7 @@
 
 [tags]
         [default_tag]
-             name             = "firefox"
+             name             = "new"
              mwfact           = 0.5
              nmaster          = 1
              layout           = "tile_right"

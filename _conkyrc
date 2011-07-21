@@ -1,60 +1,69 @@
+# CLI out
+out_to_console yes
+out_to_x no
+background no
+total_run_times 0
+use_spacer none
+update_interval 2
+
 # Le clignotement, ça pique les yeux
-double_buffer yes
+#double_buffer yes
 
 # Si jamais on voulait plusieurs Conkys simultanément
-own_window  yes
-own_window_argb_visual yes
+#own_window  yes
+#own_window_argb_visual yes
 #own_window_argb_value 0
-own_window_transparent yes
-own_window_type normal
-own_window_hints undecorate,sticky,skip_taskbar,skip_pager
+#own_window_transparent yes
+#own_window_type normal
+#own_window_hints undecorate,sticky,skip_taskbar,skip_pager
 
 # Bordures
 #draw_borders yes
 #border_margin 1
 
 # Ombres
-draw_shades no
+#draw_shades no
 
 # Position
-gap_x 0
-gap_y 25 #0
-alignment top_right
+#gap_x 0
+#gap_y 25 #0
+#alignment top_right
 #alignment bottom_middle
 
-# Comportement
-update_interval 1
 
 # Couleurs
-default_color  a8a8a8 #868686
+#default_color  a8a8a8 #868686
 #default_color B7B7B7
 #default_shade_color 000000
 
-own_window_colour 112030 #223040
+#own_window_colour 112030 #223040
 
 # Polices
-use_xft yes
+#use_xft yes
 # xftfont bauhaust:pixelsize=10
-xftfont M+ 1mn:pixelsize=10
+#xftfont M+ 1mn:pixelsize=10
 
 # Pas bouger !
-use_spacer none
-minimum_size 1680 0
+#minimum_size 1680 0
 #minimum_size 200 0
 
 
 TEXT
+cpu $cpu%  root ${fs_used_perc /}%  home ${fs_used_perc /home}% \
+wolf ${execpi 300 python2 ~/bin/scripts/gmail_wolf.py}\
+  ian ${execpi 300 python2 ~/bin/scripts/gmail_ian.py} :: \
+${time %a %d %b, %H:%M}
 #${voffset -1}${alignc}${color}${time %A, %d %B, %Y}  |  CPU : ${color ECE9E2}${font}${cpu}%${color}${color} ${cpubar 5,100}  RAM : ${color ECE9E2}${font}${memperc}%${color} ${membar 5,100}  |  ${color}Uptime : ${color ECE9E2}${font}${uptime}${color}  |  File System: ${color ECE9E2} / ${color}${fs_bar 5,100 /}  ${color ECE9E2}/home${color}  ${fs_bar 5,100 /home}  |  ${exec uname -s} ${exec uname -r} "${exec uname -n}"  |  Upgrades: ${color ECE9E2}${execi 600 pacman -Qu|wc -l}${color}  |  IP: ${color ECE9E2}${addr eth0}${color}  |  Desktop ${color ECE9E2}${desktop}${color}
-${voffset 0}${alignc}${color}${time %A, %d %B, %Y}  |  \
-Uptime : ${font}${uptime}  |  \
-IP : ${addr eth0}  |  \
-CPU : ${font}${cpu}%\
-  RAM : ${font}${memperc}%  |  \
-File System :  /root  ${fs_used_perc /}%\
-  /home  ${fs_used_perc /home}%  |  \
-Upgrades : ${execpi 600 perl ~/bin/scripts/pqu.pl}  |  \
-Mail : wolf ${execpi 300 python2 ~/bin/scripts/gmail_wolf.py}\
-  ian ${execpi 300 python2 ~/bin/scripts/gmail_ian.py}
+#${voffset 0}${alignc}${color}${time %A, %d %B, %Y}  |  \
+#Uptime : ${font}${uptime}  |  \
+#IP : ${addr eth0}  |  \
+#CPU : ${font}${cpu}%\
+#  RAM : ${font}${memperc}%  |  \
+#File System :  /root  ${fs_used_perc /}%\
+#  /home  ${fs_used_perc /home}%  |  \
+#Upgrades : ${execpi 600 perl ~/bin/scripts/pqu.pl}  |  \
+#Mail : wolf ${execpi 300 python2 ~/bin/scripts/gmail_wolf.py}\
+#  ian ${execpi 300 python2 ~/bin/scripts/gmail_ian.py}
 #-----------------------------------------------------------
 # ${voffset 0}${alignc}${color}${time %A, %d %B, %Y}  |  \
 # $sysname $kernel $machine "$nodename"  |  \
