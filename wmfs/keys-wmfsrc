@@ -3,6 +3,9 @@
          # Reload the configuration of wmfs.
         [key] mod = {"Mod4", "Control"} key = "r" func = "reload" [/key]
 
+	# Open menu
+	[key] mod = {"Mod4"} key = "w" func = "menu" cmd = "rootmenu" [/key]
+
         # Open a terminal.
         [key] mod = {"Mod4"} key = "Return" func = "spawn" cmd = "urxvt" [/key]
 

@@ -49,9 +49,9 @@ update_interval 2
 
 
 TEXT
-cpu $cpu%  root ${fs_used_perc /}%  home ${fs_used_perc /home}% \
+cpu $cpu%  root ${fs_used_perc /}%  home ${fs_used_perc /home}%  \
 wolf ${execpi 300 python2 ~/bin/scripts/gmail_wolf.py}\
-  ian ${execpi 300 python2 ~/bin/scripts/gmail_ian.py} :: \
+  ian ${execpi 300 python2 ~/bin/scripts/gmail_ian.py}  ::  \
 ${time %a %d %b, %H:%M}
 #${voffset -1}${alignc}${color}${time %A, %d %B, %Y}  |  CPU : ${color ECE9E2}${font}${cpu}%${color}${color} ${cpubar 5,100}  RAM : ${color ECE9E2}${font}${memperc}%${color} ${membar 5,100}  |  ${color}Uptime : ${color ECE9E2}${font}${uptime}${color}  |  File System: ${color ECE9E2} / ${color}${fs_bar 5,100 /}  ${color ECE9E2}/home${color}  ${fs_bar 5,100 /home}  |  ${exec uname -s} ${exec uname -r} "${exec uname -n}"  |  Upgrades: ${color ECE9E2}${execi 600 pacman -Qu|wc -l}${color}  |  IP: ${color ECE9E2}${addr eth0}${color}  |  Desktop ${color ECE9E2}${desktop}${color}
 #${voffset 0}${alignc}${color}${time %A, %d %B, %Y}  |  \

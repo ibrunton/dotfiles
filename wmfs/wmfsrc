@@ -166,7 +166,8 @@
 		layout	= "tile_right"
 	[/tag]
         [tag]
-		name = "mail"
+		name	= "mail"
+		layout	= "tile_bottom"
 	[/tag]
         [tag]
 		name	= "work"
