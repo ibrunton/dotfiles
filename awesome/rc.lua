@@ -14,7 +14,7 @@ require("gmail")
 -- {{{ Variable definitions
 -- get hostname so can use same git repo for multiple machines
 desktop_hostname = "phoenix"
-laptop_hostname = "eliyahu"
+laptop_hostname = "hakkoz"
 
 n = os.tmpname()
 os.execute("uname -n > " .. n)
@@ -31,11 +31,6 @@ terminal = "urxvt"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
--- Default modkey.
--- Usually, Mod4 is the key with a logo between Control and Alt.
--- If you do not like this or do not have such a key,
--- I suggest you to remap Mod4 to another key using xmodmap or other tools.
--- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
@@ -46,13 +41,13 @@ layouts =
     awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
     awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier
+    awful.layout.suit.max
+    --awful.layout.suit.fair,
+    --awful.layout.suit.fair.horizontal,
+    --awful.layout.suit.spiral,
+    --awful.layout.suit.spiral.dwindle,
+    --awful.layout.suit.max.fullscreen,
+    --awful.layout.suit.magnifier
 }
 -- }}}
 
@@ -60,8 +55,8 @@ layouts =
 -- Define a tag table which hold all screen tags.
 if hostname == desktop_hostname then
     tags = {
-	names = { "term", "web", "xedr", "work", "etc" },
-	layout = { layouts[2], layouts[2], layouts[1], layouts[1], layouts[1] }
+	names = { "term", "www", "xedr", "dev", "doc", "misc" },
+	layout = { layouts[2], layouts[2], layouts[1], layouts[2], layouts[1], layouts[1] }
     }
 elseif hostname == laptop_hostname then
     tags = {
@@ -71,7 +66,6 @@ elseif hostname == laptop_hostname then
 end
 
 for s = 1, screen.count() do
-    -- Each screen has its own tag table.
     tags[s] = awful.tag(tags.names, s, tags.layout)
     awful.tag.setproperty(tags[s][2], "mwfact", 0.65)
 end
@@ -79,7 +73,6 @@ end
 
 -- {{{ Autostart
 awful.util.spawn_with_shell("nitrogen --restore")
---awful.util.spawn_with_shell("my_startup.sh")
 -- }}}
 
 -- {{{ Menu
@@ -126,33 +119,33 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
 
 -- {{{ Wibox
 -- Create a textclock widget
-mytextclock = awful.widget.textclock({ align = "right" }, " %a %d %b %H:%M ", 5)
+mytextclock = awful.widget.textclock({ align = "right" }, " %a %d %b, %H:%M ", 5)
 
 -- Gmail widgets 
 -- NB: passing nil as 4th argument results in instantaneous updating,
 -- but at a performance penalty for awesome overall.
 mygmail1 = widget({ type = "textbox" })
-vicious.register(mygmail1, vicious.widgets.gmail_custom, " ian: ${count} ", 300, "/home/ian/.config/gmail_i_rc")
+vicious.register(mygmail1, vicious.widgets.gmail_custom, " ian ${count} ", 300, "/home/ian/.config/gmail_i_rc")
 
 -- customised version of the above widget to use a specified netrc file:
 mygmail2 = widget({ type = "textbox" })
-vicious.register(mygmail2, vicious.widgets.gmail_custom, " wolf: ${count} ", 300, "/home/ian/.config/gmail_w_rc")
+vicious.register(mygmail2, vicious.widgets.gmail_custom, " wolf ${count} ", 300, "/home/ian/.config/gmail_w_rc")
 
 -- CPU meter
 mycpu = widget({ type = "textbox" })
-vicious.register(mycpu, vicious.widgets.cpu, " cpu: $1% ")
+vicious.register(mycpu, vicious.widgets.cpu, " cpu $1% ")
 
 -- file system
 myfs = widget({ type = "textbox" })
-vicious.register(myfs, vicious.widgets.fs, " root: ${/ used_p}% home: ${/home used_p}% ")
+vicious.register(myfs, vicious.widgets.fs, " root ${/ used_p}% home ${/home used_p}% ")
 
 -- network traffic
 --netwidget = widget({ type = "textbox" })
 --vicious.register(netwidget, vicious.widgets.net, '<span color="#CC9393">${eth0 down_kb}</span> <span color="#7F9F7F">${eth0 up_kb}</span>', 3)
 
 -- battery monitor
-batterywidget = widget({ type = "textbox" })
-vicious.register(batterywidget, vicious.widgets.bat, " $1 $2 ($3) ", "BAT0")
+--batterywidget = widget({ type = "textbox" })
+--vicious.register(batterywidget, vicious.widgets.bat, " $1 $2 ($3) ", "BAT0")
 
 -- separator
 separator = widget({ type = "textbox" })
@@ -230,15 +223,16 @@ for s = 1, screen.count() do
     -- Add widgets to the wibox - order matters
     mywibox[s].widgets = {
         {
-            mylauncher,
+            --mylauncher,
             mytaglist[s],
-	    separator,
+            mylayoutbox[s],
+	   -- separator,
             mypromptbox[s],
             layout = awful.widget.layout.horizontal.leftright
         },
-        mylayoutbox[s],
-        mytextclock,
         s == 1 and mysystray or nil,
+        mytextclock,
+	separator,
 	mygmail1,
 	mygmail2,
 	--netwidget,
@@ -280,8 +274,8 @@ globalkeys = awful.util.table.join(
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
     awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
-    awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
-    awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
+    --awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
+    --awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
     awful.key({ modkey,           }, "Tab",
         function ()
@@ -309,7 +303,7 @@ globalkeys = awful.util.table.join(
 
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
-    --awful.key({ modkey },	     "p",     function () awful.util.spawn( "dmenu_run" ) end),
+    -- dmenu prompt:
     awful.key({ modkey },	     "p",     function () 
 	awful.util.spawn("dmenu_run -i -p 'Run:' -nb '" ..
 		string.sub(beautiful.bg_normal, 1, 7) ..
@@ -317,7 +311,7 @@ globalkeys = awful.util.table.join(
 		"' -sb '" .. string.sub(beautiful.bg_focus, 1, 7) ..
 		"' -sf '" .. beautiful.fg_focus .. "'")
     end),
-
+    -- Lua prompt:
     awful.key({ modkey }, "x",
               function ()
                   awful.prompt.run({ prompt = "Run Lua code: " },
@@ -430,7 +424,7 @@ client.add_signal("manage", function (c, startup)
     if not startup then
         -- Set the windows at the slave,
         -- i.e. put it at the end of others instead of setting it master.
-        -- awful.client.setslave(c)
+        awful.client.setslave(c)
 
         -- Put windows in a smart way, only if they does not set an initial position.
         if not c.size_hints.user_position and not c.size_hints.program_position then

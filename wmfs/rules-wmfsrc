@@ -1,21 +1,21 @@
 # Rules for WMFS
 [rules]
-       [rule]
-               instance      = "emacs"  # First part of WM_CLASS
-	       class	     = "Emacs"
-               screen        = 0          # Screen to use
-               tag           = 2          # Tag number of apps
-               free          = false       # Set automatic free client
-               max           = false      # Set automatic maximized client
-               follow_client = false      # follow the client
-               ignore_tags   = false      # ignore tag (free mode)
-       [/rule]
+       # [rule]
+       #         instance      = "emacs"  # First part of WM_CLASS
+       # 	       class	     = "Emacs"
+       #         screen        = 0          # Screen to use
+       #         tag           = 2          # Tag number of apps
+       #         free          = false       # Set automatic free client
+       #         max           = false      # Set automatic maximized client
+       #         follow_client = false      # follow the client
+       #         ignore_tags   = false      # ignore tag (free mode)
+       # [/rule]
 
        [rule]
                instance      = "Navigator"       # First part of WM_CLASS
 	       class         = "Firefox"
                screen        = 0          # Screen to use
-               tag           = 3          # Tag number of apps
+               tag           = 2          # Tag number of apps
                free          = false       # Set automatic free client
                follow_client = true      # follow the client
                ignore_tags   = false      # ignore tag (free mode)

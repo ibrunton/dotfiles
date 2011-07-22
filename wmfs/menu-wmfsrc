@@ -13,26 +13,66 @@
                 fg_focus  = "#202020" bg_focus  = "#66A9BA"
                 fg_normal = "#9F9AB3" bg_normal = "#202020"
 
-                [item] name = "Terminal"        func = "spawn" cmd = "urxvt || xterm || gnome-terminal" [/item]
-                [item] name = "Applications" submenu = "appmenu"                   [/item]
-                [item] name = "Next tag"        func = "tag_next"                  [/item]
-                [item] name = "Previous tag"    func = "tag_prev"                  [/item]
-                [item] name = "Next layout"     func = "layout_next"               [/item]
-                [item] name = "Previous layout" func = "layout_prev"               [/item]
-                [item] name = "Toggle infobar"  func = "toggle_infobar_position"   [/item]
-                [item] name = "Quit WMFS"       func = "quit"                      [/item]
+                [item] name = "terminal"        func = "spawn" cmd = "urxvt || xterm || gnome-terminal" [/item]
+		[item] name = "firefox"		func = "spawn" cmd = "firefox"     [/item]
+		[item] name = "emacsclient"	func = "spawn" cmd = "emacsclient -c -n" [/item]
+		[item] name = "dolphin"		func = "spawn" cmd = "dolphin"	   [/item]
+		[item] name = "office"	     submenu = "officemenu"		   [/item]
+		[item] name = "media"	     submenu = "mediamenu"		   [/item]
+		[item] name = "games"	     submenu = "gamesmenu"		   [/item]
+		[item] name = "power tools"  submenu = "powermenu"		   [/item]
+                [item] name = "quit wmfs"       func = "quit"                      [/item]
         [/set_menu]
 
         [set_menu]
-                name = "appmenu"
+                name = "officemenu"
                 align = "left"
 
                 fg_focus  = "#202020" bg_focus  = "#66A9BA"
                 fg_normal = "#9F9AB3" bg_normal = "#202020"
 
-                [item] name = "Browser"         func = "spawn" cmd = "firefox"     [/item]
-                [item] name = "Calculator"      func = "spawn" cmd = "xcalc"       [/item]
+                [item] name = "writer"         func = "spawn" cmd = "lowriter"     [/item]
+                [item] name = "spreadsheet"      func = "spawn" cmd = "localc"       [/item]
+                [item] name = "okular"      func = "spawn" cmd = "okular"       [/item]
+                [item] name = "calculator"      func = "spawn" cmd = "kcalc"       [/item]
         [/set_menu]
+
+	[set_menu]
+                name = "mediamenu"
+                align = "left"
+
+                fg_focus  = "#202020" bg_focus  = "#66A9BA"
+                fg_normal = "#9F9AB3" bg_normal = "#202020"
+
+                [item] name = "gimp"         func = "spawn" cmd = "gimp"     [/item]
+                [item] name = "k3b"         func = "spawn" cmd = "k3b"     [/item]
+                [item] name = "vlc"         func = "spawn" cmd = "vlc"     [/item]
+	[/set_menu]
+
+        [set_menu]
+                name = "gamesmenu"
+                align = "left"
+
+                fg_focus  = "#202020" bg_focus  = "#66A9BA"
+                fg_normal = "#9F9AB3" bg_normal = "#202020"
+
+                [item] name = "minecraft"         func = "spawn" cmd = "minecraft"     [/item]
+                [item] name = "neverball"      func = "spawn" cmd = "neverball"       [/item]
+        [/set_menu]
+
+	[set_menu]
+		name = "tagmenu"
+                align = "left"
+
+                fg_focus  = "#202020" bg_focus  = "#66A9BA"
+                fg_normal = "#9F9AB3" bg_normal = "#202020"
+
+                [item] name = "Next tag"        func = "tag_next"                  [/item]
+                [item] name = "Previous tag"    func = "tag_prev"                  [/item]
+                [item] name = "Next layout"     func = "layout_next"               [/item]
+                [item] name = "Previous layout" func = "layout_prev"               [/item]
+                [item] name = "Toggle infobar"  func = "toggle_infobar_position"   [/item]
+	[/set_menu]
 
         [set_menu]
                 name = "clientmenu"
@@ -45,4 +85,17 @@
                 [item] name = "Maximize" func = "toggle_max"  check = "check_max"  [/item]
                 [item] name = "Free"     func = "toggle_free" check = "check_free" [/item]
         [/set_menu]
+
+	[set_menu]
+		name = "powermenu"
+		align = "left"
+		fg_focus  = "#202020" bg_focus  = "#66A9BA"
+		fg_normal = "#9F9AB3" bg_normal = "#202020"
+
+		[item] name = "suspend"		func = "spawn" cmd = "kdialog --yesno 'Are you sure you want to suspend?' && sudo pm-suspend" [/item]
+		[item] name = "log out"		func = "quit" [/item]
+		[item] name = "reboot"		func = "spawn" cmd = "kdialog --yesno 'Are you sure you want to reboot?' && kdesu reboot" [/item]
+		[item] name = "shotdown"	func = "spawn" cmd = "kdialog --yesno 'Are you sure you want to shutdown?' && kdesu halt" [/item]
+		[item] name = "lock screen"	func = "spawn" cmd = "slock" [/item]
+	[/set_menu]
 [/menu]

@@ -5,13 +5,13 @@
 
 [misc]
         font                  = "Terminus-8"
-	raisefocus            = false
-        focus_follow_mouse    = false
+	raisefocus            = true
+        focus_follow_mouse    = true
         focus_follow_movement = false
-        opacity               = 255
-        focus_pointer_click = true
-        status_timing      = 1     #seconds
-        status_path       = "~/.config/wmfs/status.sh"
+        opacity               = 200
+        focus_pointer_click   = false
+        status_timing         = 1     #seconds
+        status_path           = "~/.config/wmfs/status.sh"
 [/misc]
 
 [bar]
@@ -157,34 +157,34 @@
         [/tag]
 
 	[tag]
-		name	= "emc"
-		layout	= "tile_right"
-	[/tag]
-        [tag]
 		name	= "www"
 		mwfact	= 0.65
 		layout	= "tile_right"
 	[/tag]
-        [tag]
-		name	= "mail"
-		layout	= "tile_bottom"
+	[tag]
+		name	= "dev"
+		mwfact	= 0.6
+		layout	= "tile_right"
 	[/tag]
         [tag]
-		name	= "work"
+		name	= "xedr"
 		layout	= "free"
 	[/tag]
         [tag]
-		name	= "chat"
+		name	= "doc"
+		layout	= "free"
+	[/tag]
+        [tag]
+		name	= "misc"
 		layout	= "free"
 	[/tag]
 [/tags]
 
 [root]
-       # Command you can execute to set the background.
         background_command = "nitrogen --restore"
 
-        [mouse] button = "4" func = "tag_next"              [/mouse]
-        [mouse] button = "5" func = "tag_prev"              [/mouse]
+        [mouse] button = "4" func = "tag_prev"              [/mouse]
+        [mouse] button = "5" func = "tag_next"              [/mouse]
         [mouse] button = "3" func = "menu" cmd = "rootmenu" [/mouse]
 [/root]
 
@@ -211,7 +211,7 @@
         padding = 2
 
         # Modifier for mouse use
-        modifier = "Alt"
+        modifier = "Mod4"
 
         light_shade =  0.10
         dark_shade  = -0.10
@@ -228,7 +228,7 @@
                 width_limit = 300
 
                 name = "launcher_exec"
-                prompt = "Exec: "
+                prompt = "Run: "
                 command = "exec"
         [/set_launcher]
 
