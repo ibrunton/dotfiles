@@ -150,6 +150,9 @@ vicious.register(myfs, vicious.widgets.fs, " root ${/ used_p}% home ${/home used
 -- separator
 separator = widget({ type = "textbox" })
 separator.text = " :: "
+-- spacer
+spacer = widget({ type = "textbox" })
+spacer.text = "  "
 
 -- Create a systray
 mysystray = widget({ type = "systray" })
@@ -226,7 +229,7 @@ for s = 1, screen.count() do
             --mylauncher,
             mytaglist[s],
             mylayoutbox[s],
-	   -- separator,
+	    spacer,
             mypromptbox[s],
             layout = awful.widget.layout.horizontal.leftright
         },
