@@ -55,7 +55,7 @@ layouts =
 -- Define a tag table which hold all screen tags.
 if hostname == desktop_hostname then
     tags = {
-	names = { "term", "www", "xedr", "dev", "doc", "misc" },
+	names = { "term", "www", "xedr", "dev", "doc", "etc" },
 	layout = { layouts[2], layouts[2], layouts[1], layouts[2], layouts[1], layouts[1] }
     }
 elseif hostname == laptop_hostname then
@@ -66,8 +66,8 @@ elseif hostname == laptop_hostname then
 end
 
 for s = 1, screen.count() do
-    tags[s] = awful.tag(tags.names, s, tags.layout)
-    awful.tag.setproperty(tags[s][2], "mwfact", 0.65)
+   tags[s] = awful.tag(tags.names, s, tags.layout)
+   awful.tag.setproperty(tags[s][2], "mwfact", 0.65)
 end
 -- }}}
 
@@ -256,6 +256,33 @@ root.buttons(awful.util.table.join(
 ))
 -- }}}
 
+-- {{{ Move Mouse Cursor out of the way
+--local safeCoords = {x=1680, y=1050}
+--local safeCoords = {x=840, y=0}
+local safeCoords = {x=210, y=0}
+--local moveMouseOnStartup = true
+local function moveMouse(x_co, y_co)
+   mouse.coords({ x=x_co, y=y_co })
+end
+-- }}}
+
+
+-- Optionally move the mouse when rc.lua is read (startup)
+if moveMouseOnStartup then
+   moveMouse(safeCoords.x, safeCoords.y)
+end
+
+-- Move the mouse out of the way when switching to tiled
+-- terminal/emacs tags
+for s = 1, screen.count() do
+   tags[1][1]:add_signal("property::selected", function (tag)
+						  moveMouse(safeCoords.x,safeCoords.y)
+					       end)
+   tags[1][4]:add_signal("property::selected", function (tag)
+						  moveMouse(safeCoords.x, safeCoords.y)
+					       end)
+end
+
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
@@ -303,6 +330,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
 
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
+
+    awful.key({ modkey, "Control" }, "m", function() moveMouse(safeCoords.x, safeCoords.y) end),
 
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
@@ -395,18 +424,21 @@ root.keys(globalkeys)
 
 -- {{{ Rules
 awful.rules.rules = {
-    -- All clients will match this rule.
-    { rule = { },
+   -- All clients will match this rule.
+   { rule = { },
       properties = { border_width = beautiful.border_width,
-                     border_color = beautiful.border_normal,
-                     focus = true,
-                     keys = clientkeys,
-                     buttons = clientbuttons } },
-    { rule = { class = "gimp" },
+	 border_color = beautiful.border_normal,
+	 focus = true,
+	 keys = clientkeys,
+	 buttons = clientbuttons } },
+   { rule = { class = "gimp" },
       properties = { floating = true } },
-    -- Set Firefox to always map on tags number 2 of screen 1.
-    { rule = { class = "Firefox" },
-      properties = { tag = tags[1][2] }, }
+   
+   { rule = { class = "Firefox" },
+      properties = { tag = tags[1][2] } },
+   
+   { rule = { class = "okular" },
+      properties = { tag = tags[1][5] } }
 }
 -- }}}
 
