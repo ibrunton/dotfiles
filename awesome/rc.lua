@@ -104,6 +104,7 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
                                     { "terminal", terminal },
 				    { "emacsclient", "emacsclient -c -n" },
 				    { "firefox", "firefox" },
+				    { "thunar", "thunar" },
 				    { "dolphin", "dolphin" },
 				    { "office", myofficemenu },
 				    { "media", mymediamenu },
@@ -166,9 +167,9 @@ mytaglist.buttons = awful.util.table.join(
                     awful.button({ }, 1, awful.tag.viewonly),
                     awful.button({ modkey }, 1, awful.client.movetotag),
                     awful.button({ }, 3, awful.tag.viewtoggle),
-                    awful.button({ modkey }, 3, awful.client.toggletag),
-                    awful.button({ }, 4, awful.tag.viewnext),
-                    awful.button({ }, 5, awful.tag.viewprev)
+                    awful.button({ modkey }, 3, awful.client.toggletag)
+                    -- awful.button({ }, 4, awful.tag.viewnext),
+                    -- awful.button({ }, 5, awful.tag.viewprev)
                     )
 mytasklist = {}
 mytasklist.buttons = awful.util.table.join(
