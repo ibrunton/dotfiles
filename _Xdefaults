@@ -10,7 +10,37 @@ urxvt.shading: 40
 urxvt.depth: 32
 urxvt.background: rgba:0000/0000/0000/bbbb
 
+! black/grey
+*color0:  #060203
+*color8:  #444444
+
+! red
+*color1:  #c54200
+*color9:  #db703a
+
+! green
+*color2:  #667b24
+*color10: #70880b
+
+! yellow
+*color3:  #e3a100
+*color11: #e5be21
+
+! blue
+*color4:  #3856b8
 *color12: #1181ff
+
+! magenta
+*color5:  #961fb5
+*color13: #b550d0
+
+! cyan
+*color6:  #2e8fac
+*color14: #48a0b8
+
+! grey/white
+*color7:  #c5e0e1
+*color16: #d9fdff
 
 urxvt.font: xft:Courier New:size=12
 
