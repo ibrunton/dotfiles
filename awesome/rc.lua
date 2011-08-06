@@ -104,7 +104,6 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
                                     { "terminal", terminal },
 				    { "emacsclient", "emacsclient -c -n" },
 				    { "firefox", "firefox" },
-				    { "thunar", "thunar" },
 				    { "dolphin", "dolphin" },
 				    { "office", myofficemenu },
 				    { "media", mymediamenu },
@@ -433,7 +432,8 @@ awful.rules.rules = {
 	 keys = clientkeys,
 	 buttons = clientbuttons } },
    { rule = { class = "gimp" },
-      properties = { floating = true } },
+      properties = { tag = tags[1][6],
+	floating = true } },
    
    { rule = { class = "Firefox" },
       properties = { tag = tags[1][2] } },

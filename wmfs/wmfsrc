@@ -175,7 +175,7 @@
 		layout	= "free"
 	[/tag]
         [tag]
-		name	= "misc"
+		name	= "etc"
 		layout	= "free"
 	[/tag]
 [/tags]
