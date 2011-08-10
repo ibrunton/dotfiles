@@ -10,7 +10,7 @@
         [key] mod = {"Mod4"} key = "Return" func = "spawn" cmd = "urxvt" [/key]
 
         # Kill the selected client.
-        [key] mod = {"Mod4"} key = "q" func = "client_kill" [/key]
+        [key] mod = {"Mod4","Shift"} key = "c" func = "client_kill" [/key]
 
         # Quit wmfs.
         [key] mod = {"Control", "Alt", "Shift"} key = "q" func = "quit" [/key]

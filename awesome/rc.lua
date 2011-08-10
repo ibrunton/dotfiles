@@ -67,7 +67,7 @@ end
 
 for s = 1, screen.count() do
    tags[s] = awful.tag(tags.names, s, tags.layout)
-   awful.tag.setproperty(tags[s][2], "mwfact", 0.65)
+   awful.tag.setproperty(tags[s][2], "mwfact", 0.7)
 end
 -- }}}
 

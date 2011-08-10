@@ -8,7 +8,7 @@
 	raisefocus            = true
         focus_follow_mouse    = true
         focus_follow_movement = false
-        opacity               = 200
+        opacity               = 100
         focus_pointer_click   = false
         status_timing         = 1     #seconds
         status_path           = "~/.config/wmfs/status.sh"
@@ -161,20 +161,20 @@
 		mwfact	= 0.65
 		layout	= "tile_right"
 	[/tag]
+    [tag]
+		name	= "xedr"
+		layout	= "free"
+	[/tag]
 	[tag]
 		name	= "dev"
 		mwfact	= 0.6
 		layout	= "tile_right"
 	[/tag]
-        [tag]
-		name	= "xedr"
-		layout	= "free"
-	[/tag]
-        [tag]
+    [tag]
 		name	= "doc"
 		layout	= "free"
 	[/tag]
-        [tag]
+    [tag]
 		name	= "etc"
 		layout	= "free"
 	[/tag]
