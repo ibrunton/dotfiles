@@ -105,6 +105,7 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
 				    { "emacsclient", "emacsclient -c -n" },
 				    { "firefox", "firefox" },
 				    { "dolphin", "dolphin" },
+				    { "nitrogen", "nitrogen" },
 				    { "office", myofficemenu },
 				    { "media", mymediamenu },
 				    { "games", mygamesmenu },
