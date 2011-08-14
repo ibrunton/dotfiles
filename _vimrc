@@ -5,7 +5,7 @@ set ruler
 syntax on
 set directory=~/.tmp
 
-highlight Comment ctermfg=LightBlue
+"highlight Comment ctermfg=LightBlue
 filetype plugin indent on
 set noexpandtab
 set copyindent
