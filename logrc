@@ -1,6 +1,6 @@
 log_dir=$HOME/Dropbox/docs/log/
 snippet_dir=$HOME/Dropbox/docs/log/snippets/
-editor="vim -c 'set tw=72'"
+editor="vim -c 'set tw=75'"
 alternate_editor="emacsclient -t"
 line_length=75
 #tags_off=true
