@@ -103,13 +103,14 @@ mygamesmenu = {
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "terminal", terminal },
 				    { "emacsclient", "emacsclient -c -n" },
-				    { "firefox", "firefox" },
+					{ "opera", "opera" },
+					--{ "firefox", "firefox" },
 				    { "dolphin", "dolphin" },
 				    { "nitrogen", "nitrogen" },
 				    { "office", myofficemenu },
 				    { "media", mymediamenu },
 				    { "games", mygamesmenu },
-				    { "Suspend", "kdialog --yesno 'Are you sure you want to suspend?' && sudo pm-suspend" },
+					--{ "Suspend", "kdialog --yesno 'Are you sure you want to suspend?' && sudo pm-suspend" },
 				    { "Log out", '/home/ian/bin/slrh.sh' }
                                   }
                         })
@@ -437,6 +438,9 @@ awful.rules.rules = {
 	floating = true } },
    
    { rule = { class = "Firefox" },
+      properties = { tag = tags[1][2] } },
+
+   { rule = { class = "Opera" },
       properties = { tag = tags[1][2] } },
    
    { rule = { class = "okular" },
