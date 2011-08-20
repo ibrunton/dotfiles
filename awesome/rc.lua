@@ -102,7 +102,7 @@ mygamesmenu = {
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "terminal", terminal },
-				    { "emacsclient", "emacsclient -c -n" },
+				    { "emacsclient", terminal .. " -e emacsclient -nw" }, --"emacsclient -c -n" },
 					{ "opera", "opera" },
 					--{ "firefox", "firefox" },
 				    { "dolphin", "dolphin" },
