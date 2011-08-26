@@ -57,7 +57,7 @@ layouts =
 if hostname == desktop_hostname then
     tags = {
 	names = { "term", "www", "xedr", "dev", "doc", "etc" },
-	layout = { layouts[2], layouts[2], layouts[1], layouts[3], layouts[1], layouts[1] }
+	layout = { layouts[2], layouts[2], layouts[1], layouts[2], layouts[1], layouts[1] }
     }
 elseif hostname == laptop_hostname then
     tags = {
