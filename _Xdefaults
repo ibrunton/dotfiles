@@ -19,8 +19,10 @@ urxvt.background: rgba:0000/0000/0000/bbbb
 *color9:  #db703a
 
 ! green
-*color2:  #667b24
-*color10: #70880b
+*color2:  #38b856
+!#667b24
+*color10: #17d193
+!#70880b
 
 ! yellow
 *color3:  #e3a100
@@ -47,6 +49,6 @@ urxvt.background: rgba:0000/0000/0000/bbbb
 urxvt.font: xft:Terminus:size=12
 
 urxvt.perl-ext: default,url-select
-urxvt.keysym.M-u: perl:url-select:select_next
+!urxvt.keysym.M-u: perl:url-select:select_next
 urxvt.urlLauncher: firefox
 urxvt.underlineURLs: true

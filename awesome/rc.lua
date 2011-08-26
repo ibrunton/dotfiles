@@ -13,15 +13,16 @@ require("gmail")
 
 -- {{{ Variable definitions
 -- get hostname so can use same git repo for multiple machines
-desktop_hostname = "phoenix"
+desktop_hostname = "green"
 laptop_hostname = "hakkoz"
 
-n = os.tmpname()
-os.execute("uname -n > " .. n)
-for line in io.lines (n) do
-    hostname = line
-end
-os.remove(n)
+-- n = os.tmpname()
+-- os.execute("uname -n > " .. n)
+-- for line in io.lines (n) do
+--     hostname = line
+-- end
+-- os.remove(n)
+hostname = "green"
 
 -- Themes define colours, icons, and wallpapers
 beautiful.init("/home/ian/.config/awesome/themes/" .. hostname .. "/theme.lua")
@@ -56,7 +57,7 @@ layouts =
 if hostname == desktop_hostname then
     tags = {
 	names = { "term", "www", "xedr", "dev", "doc", "etc" },
-	layout = { layouts[2], layouts[2], layouts[1], layouts[2], layouts[1], layouts[1] }
+	layout = { layouts[2], layouts[2], layouts[1], layouts[3], layouts[1], layouts[1] }
     }
 elseif hostname == laptop_hostname then
     tags = {
@@ -67,12 +68,15 @@ end
 
 for s = 1, screen.count() do
    tags[s] = awful.tag(tags.names, s, tags.layout)
-   awful.tag.setproperty(tags[s][2], "mwfact", 0.7)
+   awful.tag.setproperty(tags[s][2], "mwfact", 0.75)
 end
 -- }}}
 
 -- {{{ Autostart
 awful.util.spawn_with_shell("nitrogen --restore")
+-- }}}
+-- {{{ Autostop
+awesome.add_signal("exit", function() awful.util.spawn("atexit.sh") end)
 -- }}}
 
 -- {{{ Menu
