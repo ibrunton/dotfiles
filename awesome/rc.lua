@@ -69,6 +69,7 @@ end
 for s = 1, screen.count() do
    tags[s] = awful.tag(tags.names, s, tags.layout)
    awful.tag.setproperty(tags[s][2], "mwfact", 0.75)
+   awful.tag.setproperty(tags[s][4], "mwfact", 0.55)
 end
 -- }}}
 
@@ -106,9 +107,9 @@ mygamesmenu = {
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "terminal", terminal },
-				    { "emacsclient", terminal .. " -e emacsclient -nw" }, --"emacsclient -c -n" },
-					{ "opera", "opera" },
-					--{ "firefox", "firefox" },
+				    { "emacsclient", terminal .. " -e emacsclient -nw -e \"(transbg)\"" },
+					-- { "opera", "opera" },
+					{ "firefox", "firefox" },
 				    { "dolphin", "dolphin" },
 				    { "nitrogen", "nitrogen" },
 				    { "office", myofficemenu },
