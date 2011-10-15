@@ -8,6 +8,7 @@ update_interval 2
 
 TEXT
 cpu $cpu%  root ${fs_used_perc /}%  home ${fs_used_perc /home}%  \
+pac ${execi 600 pacman -Qu |wc -l}  \
 [${execi 10 dropbox status}]  \
 vol ${execi 60 amixer sget Master|sed -ne 's/^.*Mono: .*\[\([0-9]*\)%\].*$/\1/p'}%  \
 wolf ${execpi 300 python2 ~/bin/scripts/gmail_wolf.py}\

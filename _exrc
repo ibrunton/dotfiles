@@ -1,0 +1,8 @@
+set autoindent
+set modeline
+set number
+set ruler
+set showmatch
+set showmode
+set nowrapscan
+set directory=/tmp

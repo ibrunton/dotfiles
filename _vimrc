@@ -31,3 +31,7 @@ autocmd FileType perl setlocal shiftwidth=4
 autocmd FileType perl setlocal tabstop=4
 
 autocmd FileType make setlocal noexpandtab
+
+autocmd FileType tex setlocal shiftwidth=4
+autocmd FileType tex setlocal tabstop=4
+autocmd FileType tex setlocal tw=80
