@@ -1,6 +1,7 @@
 urxvt.title: urxvt
 urxvt.foreground: White
 urxvt.borderColor: #555555
+urxvt.geometry: 85x24
 urxvt.internalBorder: 0
 urxvt.eXTernalBorder: 0
 urxvt.scrollBar_right: false

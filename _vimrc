@@ -3,7 +3,7 @@ set number
 set showmode
 set ruler
 syntax on
-set directory=~/.tmp
+set directory=/tmp
 
 " Status Line
 set laststatus=2
@@ -35,3 +35,5 @@ autocmd FileType make setlocal noexpandtab
 autocmd FileType tex setlocal shiftwidth=4
 autocmd FileType tex setlocal tabstop=4
 autocmd FileType tex setlocal tw=80
+
+autocmd FileType mkd setlocal tw=80

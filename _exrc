@@ -1,7 +1,7 @@
 set autoindent
-set modeline
+"set modeline
 set number
-set ruler
+"set ruler
 set showmatch
 set showmode
 set nowrapscan
