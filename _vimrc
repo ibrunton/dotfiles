@@ -8,10 +8,12 @@ set directory=/tmp
 " Status Line
 set laststatus=2
 set statusline=\ %f\ %m\ %r\ %y%=L:\ %l/%L,%c%V\ \ \ %p%%\ %P\ 
-highlight statusline ctermfg=8 ctermbg=10
+highlight statusline cterm=bold ctermfg=Green ctermbg=Black
 
 " put plugins in discrete subdirectories:
 call pathogen#infect()
+
+set nofoldenable
 
 "highlight Comment ctermfg=LightBlue
 filetype plugin indent on
