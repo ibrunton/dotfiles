@@ -27,3 +27,13 @@ function swap() {
 	mv "$2" "$1"
 	mv "$tmpfile" "$2"
 }
+
+function pwo() {
+	log "$1" :bca
+	if [ -z "$2" ]
+	then
+		log -i :pwo
+	else
+		log "$2" :pwo
+	fi
+}
