@@ -9,7 +9,7 @@ require("naughty")
 -- Widget library
 require("vicious")
 -- customised version of vicious gmail widget
-require("gmail")
+-- require("gmail")
 
 if awesome.startup_errors then
    naughty.notify({ preset = naughty.config.presets.critical,
@@ -78,6 +78,7 @@ end
 
 -- {{{ Autostart
 awful.util.spawn_with_shell("nitrogen --restore")
+awful.util.spawn_with_shell("/home/ian/bin/awesomeconky.sh")
 -- }}}
 -- {{{ Autostop
 awesome.add_signal("exit", function() awful.util.spawn("atexit.sh") end)
@@ -134,20 +135,20 @@ mytextclock = awful.widget.textclock({ align = "right" }, " %a %d %b, %H:%M ", 5
 -- Gmail widgets 
 -- NB: passing nil as 4th argument results in instantaneous updating,
 -- but at a performance penalty for awesome overall.
-mygmail1 = widget({ type = "textbox" })
-vicious.register(mygmail1, vicious.widgets.gmail_custom, " ian ${count} ", 300, "/home/ian/.config/gmail_i_rc")
+--mygmail1 = widget({ type = "textbox" })
+--vicious.register(mygmail1, vicious.widgets.gmail_custom, " ian ${count} ", 300, "/home/ian/.config/gmail_i_rc")
 
 -- customised version of the above widget to use a specified netrc file:
-mygmail2 = widget({ type = "textbox" })
-vicious.register(mygmail2, vicious.widgets.gmail_custom, " wolf ${count} ", 300, "/home/ian/.config/gmail_w_rc")
+--mygmail2 = widget({ type = "textbox" })
+--vicious.register(mygmail2, vicious.widgets.gmail_custom, " wolf ${count} ", 300, "/home/ian/.config/gmail_w_rc")
 
 -- CPU meter
-mycpu = widget({ type = "textbox" })
-vicious.register(mycpu, vicious.widgets.cpu, " cpu $1% ")
+--mycpu = widget({ type = "textbox" })
+--vicious.register(mycpu, vicious.widgets.cpu, " cpu $1% ")
 
 -- file system
-myfs = widget({ type = "textbox" })
-vicious.register(myfs, vicious.widgets.fs, " root ${/ used_p}% home ${/home used_p}% ")
+--myfs = widget({ type = "textbox" })
+--vicious.register(myfs, vicious.widgets.fs, " root ${/ used_p}% home ${/home used_p}% ")
 
 -- network traffic
 --netwidget = widget({ type = "textbox" })
@@ -156,6 +157,9 @@ vicious.register(myfs, vicious.widgets.fs, " root ${/ used_p}% home ${/home used
 -- battery monitor
 --batterywidget = widget({ type = "textbox" })
 --vicious.register(batterywidget, vicious.widgets.bat, " $1 $2 ($3) ", "BAT0")
+
+-- holder for conky
+conky = widget({ type = "textbox" })
 
 -- separator
 separator = widget({ type = "textbox" })
@@ -248,11 +252,12 @@ for s = 1, screen.count() do
 	  separator,
 	  s == 1 and mysystray or nil,
 	  separator,
-	  mygmail1,
-	  mygmail2,
+	  --mygmail1,
+	  --mygmail2,
 	  --netwidget,
-	  myfs,
-	  mycpu,
+	  --myfs,
+	  --mycpu,
+	  conky,
 	  mytasklist[s],
 	  layout = awful.widget.layout.horizontal.rightleft
    }
@@ -329,6 +334,9 @@ globalkeys = awful.util.table.join(
    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
    awful.key({ modkey, "Shift"   }, "Return", function ()
 				awful.util.spawn("/home/ian/bin/emet") end),
+
+   awful.key({ modkey, "Shift"   }, "Escape", function ()
+   	   			awful.util.spawn("/home/ian/bin/slrh.sh") end),
 
    awful.key({ modkey, "Control" }, "r", awesome.restart),
    awful.key({ modkey, "Shift"   }, "q", awesome.quit),
