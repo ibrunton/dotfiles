@@ -34,6 +34,8 @@ autocmd FileType perl setlocal tabstop=4
 
 autocmd FileType make setlocal noexpandtab
 
+set grepprg=grep\ -nH\ $*
+let g:tex_flavour = "latex"
 autocmd FileType tex setlocal shiftwidth=4
 autocmd FileType tex setlocal tabstop=4
 autocmd FileType tex setlocal tw=80

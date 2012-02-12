@@ -13,14 +13,14 @@ theme = {}
 theme.font          = "terminus 8"
 
 theme.bg_normal     = "#05211190" --222222
-theme.bg_focus      = "#17d19390" --"#535d6c"
+theme.bg_focus      = "#05211190" --"#535d6c"
 theme.bg_urgent     = "#ffffff"
 theme.bg_minimize   = "#44444490"
 
 theme.fg_normal     = "#aaaaaa"
-theme.fg_focus      = "#ffffff"
-theme.fg_urgent     = "#000000"
-theme.fg_minimize   = "#ffffff"
+theme.fg_focus      = "#14915f"
+theme.fg_urgent     = "#008800"
+theme.fg_minimize   = "#888888"
 
 theme.border_width  = "1"
 theme.border_normal = "#333333" --"#000000"
@@ -28,7 +28,9 @@ theme.border_focus  = "#17d193" --"#535d6c"
 theme.border_marked = "#91231c"
 
 theme.taglist_bg    = "#05211190"
-theme.taglist_bg_focus  = "#17d19390"
+theme.taglist_bg_focus  = "#05211190"
+theme.taglist_fg	= "#aaaaaa"
+theme.taglist_fg_focus	= "#14915f"
 
 -- There are other variable sets
 -- overriding the default one when
@@ -86,6 +88,7 @@ theme.titlebar_maximized_button_focus_active  = "/usr/share/awesome/themes/defau
 
 -- You can use your own command to set your wallpaper
 --theme.wallpaper_cmd = { "awsetbg /usr/share/awesome/themes/default/background.png" }
+theme.wallpaper_cmd = { 42 }
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = "/usr/share/awesome/themes/default/layouts/fairhw.png"

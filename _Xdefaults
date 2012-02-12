@@ -1,15 +1,15 @@
-urxvt.title: urxvt
-urxvt.foreground: White
-urxvt.borderColor: #555555
-urxvt.geometry: 85x24
-urxvt.internalBorder: 0
-urxvt.eXTernalBorder: 0
-urxvt.scrollBar_right: false
-urxvt.scrollBar: false
-urxvt.transparent: true
-urxvt.shading: 40
-urxvt.depth: 32
-urxvt.background: rgba:0000/0000/0000/bbbb
+URxvt.title: urxvt
+URxvt.foreground: White
+URxvt.borderColor: #555555
+URxvt.geometry: 85x24
+URxvt.internalBorder: 0
+URxvt.eXTernalBorder: 0
+URxvt.scrollBar_right: false
+URxvt.scrollBar: false
+URxvt.transparent: true
+URxvt.shading: 40
+URxvt.depth: 32
+URxvt.background: rgba:0000/0000/0000/bbbb
 
 ! black/grey
 *color0:  #060203
@@ -48,10 +48,14 @@ urxvt.background: rgba:0000/0000/0000/bbbb
 
 !urxvt.font: xft:Courier New:size=12
 !urxvt.font: xft:Terminus:size=12
-urxvt.font: xft:Tamsyn:size=12
+URxvt.font: xft:Tamsyn:size=12
 !urxvt.font: xft:DejaVuSansMono:size=10
 
-urxvt.perl-ext: default,url-select
+URxvt.perl-ext: default,url-select
 !urxvt.keysym.M-u: perl:url-select:select_next
-urxvt.urlLauncher: firefox
-urxvt.underlineURLs: true
+URxvt.urlLauncher: firefox
+URxvt.underlineURLs: true
+
+MAILTO*title: MAILTO
+EMACS*title: EMACS
+EMACS*geometry: 100x30
