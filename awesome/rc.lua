@@ -273,10 +273,9 @@ root.buttons(awful.util.table.join(
 -- }}}
 
 -- {{{ Move Mouse Cursor out of the way
---local safeCoords = {x=1680, y=1050}
---local safeCoords = {x=840, y=0}
-local safeCoords = {x=210, y=0}
 --local moveMouseOnStartup = true
+--local moveMouseOnTiled = true
+local safeCoords = {x=210, y=0}
 local function moveMouse(x_co, y_co)
    mouse.coords({ x=x_co, y=y_co })
 end
@@ -290,13 +289,15 @@ end
 
 -- Move the mouse out of the way when switching to tiled
 -- terminal/emacs tags
-for s = 1, screen.count() do
-   tags[1][1]:add_signal("property::selected", function (tag)
-							moveMouse(safeCoords.x,safeCoords.y)
-											   end)
-   tags[1][4]:add_signal("property::selected", function (tag)
-							moveMouse(safeCoords.x, safeCoords.y)
-											   end)
+if moveMouseOnTiled then
+   for s = 1, screen.count() do
+	  tags[1][1]:add_signal("property::selected", function (tag)
+							   moveMouse(safeCoords.x,safeCoords.y)
+												  end)
+	  tags[1][4]:add_signal("property::selected", function (tag)
+							   moveMouse(safeCoords.x, safeCoords.y)
+												  end)
+   end
 end
 
 -- {{{ Key bindings
@@ -364,7 +365,7 @@ globalkeys = awful.util.table.join(
 
    -- dmenu prompt:
    awful.key({ modkey },			"p",	function () 
-				awful.util.spawn("dmenu_run -i -p 'Run:' -nb '" ..
+				awful.util.spawn("dmenu_run -i -nb '" ..
 								 string.sub(beautiful.bg_normal, 1, 7) ..
 								 "' -nf '" .. beautiful.fg_normal ..
 								 "' -sb '" .. string.sub(beautiful.bg_focus, 1, 7) ..

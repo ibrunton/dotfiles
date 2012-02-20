@@ -34,6 +34,12 @@ autocmd FileType perl setlocal tabstop=4
 
 autocmd FileType make setlocal noexpandtab
 
+autocmd FileType python setlocal expandtab
+autocmd FileType python setlocal shiftwidth=4
+autocmd FileType python setlocal tabstop=4
+autocmd FileType python setlocal softtabstop=4
+autocmd FileType python setlocal smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+
 set grepprg=grep\ -nH\ $*
 let g:tex_flavour = "latex"
 autocmd FileType tex setlocal shiftwidth=4
