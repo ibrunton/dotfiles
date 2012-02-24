@@ -39,11 +39,15 @@ autocmd FileType python setlocal shiftwidth=4
 autocmd FileType python setlocal tabstop=4
 autocmd FileType python setlocal softtabstop=4
 autocmd FileType python setlocal smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+autocmd FileType python setlocal tw=79
+
+autocmd FileType html setlocal shiftwidth=2
+autocmd FileType html setlocal tabstop=2
 
 set grepprg=grep\ -nH\ $*
 let g:tex_flavour = "latex"
 autocmd FileType tex setlocal shiftwidth=4
 autocmd FileType tex setlocal tabstop=4
-autocmd FileType tex setlocal tw=80
+autocmd FileType tex setlocal tw=79
 
-autocmd FileType mkd setlocal tw=80
+autocmd FileType mkd setlocal tw=79
