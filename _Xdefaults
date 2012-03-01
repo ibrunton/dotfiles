@@ -23,7 +23,7 @@ URxvt.background: rgba:0000/0000/0000/bbbb
 *color2:  #38b856
 !#667b24
 *color10: #17d193
-!#70880b
+#70880b
 
 ! yellow
 *color3:  #e3a100

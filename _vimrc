@@ -1,4 +1,6 @@
 set bg=dark
+"let g:solarized_termtrans=1
+"colorscheme solarized
 set number
 set showmode
 set ruler

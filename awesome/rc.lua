@@ -34,6 +34,7 @@ end
 
 -- {{{ Variable definitions
 theme = "green"
+snap = 20
 
 -- Themes define colours, icons, and wallpapers
 beautiful.init("/home/ian/.config/awesome/themes/" .. theme .. "/theme.lua")
@@ -330,6 +331,11 @@ globalkeys = awful.util.table.join(
 				   client.focus:raise()
 				end
 			 end),
+
+   -- volume control
+   awful.key({ modkey,		 }, "F10",    function () awful.util.spawn("amixer -q sset Master 1- unmute") end),
+   awful.key({ modkey,		 }, "F11",    function () awful.util.spawn("amixer -q sset Master toggle") end),
+   awful.key({ modkey,		 }, "F12",    function () awful.util.spawn("amixer -q sset Master 1+ unmute") end),
    
    -- Standard program
    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
