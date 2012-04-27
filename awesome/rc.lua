@@ -9,6 +9,7 @@ require("naughty")
 -- Widget library
 require("vicious")
 -- customised version of vicious gmail widget
+-- no longer needed, as conky now does this job
 -- require("gmail")
 
 if awesome.startup_errors then
@@ -107,22 +108,26 @@ mymediamenu = {
 }
 
 mygamesmenu = {
+   { "kpatience", "kpatience" },
+   { "kBlackBox", "kblackbox" },
+   { "kMahjongg", "kmahjongg" },
+   { "kMines", "kmines" },
    { "minecraft", "minecraft" }
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "terminal", terminal },
-									{ "emacsclient", terminal .. " -e emacsclient -nw -e \"(transbg)\"" },
-									-- { "opera", "opera" },
-									{ "firefox", "firefox" },
-									{ "dolphin", "dolphin" },
-									{ "nitrogen", "nitrogen" },
-									{ "office", myofficemenu },
-									{ "media", mymediamenu },
-									{ "games", mygamesmenu },
-									--{ "Suspend", "kdialog --yesno 'Are you sure you want to suspend?' && sudo pm-suspend" },
-									{ "Log out", '/home/ian/bin/slrh.sh' }
-                                  }
+				{ "terminal", terminal },
+				{ "emacsclient", terminal .. " -e emacsclient -nw -e \"(transbg)\"" },
+				-- { "opera", "opera" },
+				{ "firefox", "firefox" },
+				{ "dolphin", "dolphin" },
+				{ "nitrogen", "nitrogen" },
+				{ "office", myofficemenu },
+				{ "media", mymediamenu },
+				{ "games", mygamesmenu },
+				--{ "Suspend", "kdialog --yesno 'Are you sure you want to suspend?' && sudo pm-suspend" },
+				{ "Log out", '/home/ian/bin/slrh.sh' }
+			    }
                         })
 
 mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
@@ -242,7 +247,7 @@ for s = 1, screen.count() do
    -- Add widgets to the wibox - order matters
    mywibox[s].widgets = {
 	  {
-		 --mylauncher,
+		 mylauncher,
 		 mytaglist[s],
 		 mylayoutbox[s],
 		 spacer,
@@ -253,11 +258,6 @@ for s = 1, screen.count() do
 	  separator,
 	  s == 1 and mysystray or nil,
 	  separator,
-	  --mygmail1,
-	  --mygmail2,
-	  --netwidget,
-	  --myfs,
-	  --mycpu,
 	  conky,
 	  mytasklist[s],
 	  layout = awful.widget.layout.horizontal.rightleft
@@ -337,6 +337,10 @@ globalkeys = awful.util.table.join(
    awful.key({ modkey,		 }, "F11",    function () awful.util.spawn("amixer -q sset Master toggle") end),
    awful.key({ modkey,		 }, "F12",    function () awful.util.spawn("amixer -q sset Master 1+ unmute") end),
    
+   -- misc applications
+   awful.key({ modkey,		 }, "f",      function () awful.util.spawn("firefox") end),
+   awful.key({ modkey,		 }, "t",      function () awful.util.spawn("dolphin") end),
+
    -- Standard program
    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
    awful.key({ modkey, "Shift"   }, "Return", function ()
@@ -480,7 +484,8 @@ awful.rules.rules = {
 					floating = true } },
    
    { rule = { class = "Firefox" },
-	 properties = { tag = tags[1][2] } },
+	 properties = { tag = tags[1][2],
+                    floating = false } },
    
    { rule = { class = "Opera" },
 	 properties = { tag = tags[1][2] } },
@@ -526,3 +531,5 @@ client.add_signal("manage", function (c, startup)
 client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+--
+-- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=4:softtabstop=4:textwidth=80

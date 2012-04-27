@@ -30,33 +30,33 @@ function swap() {
 
 function pwo() {
 	log "$1" :bca
-	log -t "$1" :bca
+	log -T "$1" :bca
 
 	if [ -z "$2" ]
 	then
 		log -i :pwo
-		log -ti :pwo
+		log -Ti :pwo
 	else
 		log "$2" :pwo
-		log -t "$2" :pwo
+		log -T "$2" :pwo
 	fi
 }
 
 function cardiopwo() {
 	log "$1" :bca
-	log -t "$1" :bca
+	log -T "$1" :bca
 
 	if [ -z "$2" ]
 	then
 		log -i :cardiopwo
-		log -ti :cardiopwo
+		log -Ti :cardiopwo
 	else
 		log "$2" :cardiopwo
-		log -t "$2" :cardiopwo
+		log -T "$2" :cardiopwo
 	fi
 }
 
 function bca() {
 	log "$1" :bca
-	log -t "$1" :bca
+	log -T "$1" :bca
 }

@@ -10,7 +10,7 @@ theme = {}
 --config  = awful.util.getdir("config")
 
 
-theme.font          = "terminus 8"
+theme.font          = "tamsyn 10"
 
 theme.bg_normal     = "#05211190" --222222
 theme.bg_focus      = "#05211190" --"#535d6c"
@@ -93,26 +93,26 @@ theme.wallpaper_cmd = { 42 }
 -- You can use your own layout icons like this:
 theme.layout_fairh = "/usr/share/awesome/themes/default/layouts/fairhw.png"
 theme.layout_fairv = "/usr/share/awesome/themes/default/layouts/fairvw.png"
---theme.layout_floating  = "/usr/share/awesome/themes/default/layouts/floatingw.png"
-theme.layout_floating  = "/home/ian/.config/wmfs/icons/fr.png"
+theme.layout_floating  = "/usr/share/awesome/themes/default/layouts/floatingw.png"
+--theme.layout_floating  = "/home/ian/.config/wmfs/icons/fr.png"
 theme.layout_magnifier = "/usr/share/awesome/themes/default/layouts/magnifierw.png"
---theme.layout_max = "/usr/share/awesome/themes/default/layouts/maxw.png"
-theme.layout_max = "/home/ian/.config/wmfs/icons/max.png"
-theme.layout_max = "/home/ian/.config/wmfs/icons/max.png"
+theme.layout_max = "/usr/share/awesome/themes/default/layouts/maxw.png"
+--theme.layout_max = "/home/ian/.config/wmfs/icons/max.png"
 theme.layout_fullscreen = "/usr/share/awesome/themes/default/layouts/fullscreenw.png"
---theme.layout_tilebottom = "/usr/share/awesome/themes/default/layouts/tilebottomw.png"
-theme.layout_tilebottom = "/home/ian/.config/wmfs/icons/tb.png"
---theme.layout_tileleft   = "/usr/share/awesome/themes/default/layouts/tileleftw.png"
-theme.layout_tileleft   = "/home/ian/.config/wmfs/icons/tl.png"
---theme.layout_tile = "/usr/share/awesome/themes/default/layouts/tilew.png"
-theme.layout_tile = "/home/ian/.config/wmfs/icons/tr.png"
---theme.layout_tiletop = "/usr/share/awesome/themes/default/layouts/tiletopw.png"
-theme.layout_tiletop = "/home/ian/.config/wmfs/icons/tt.png"
+theme.layout_tilebottom = "/usr/share/awesome/themes/default/layouts/tilebottomw.png"
+--theme.layout_tilebottom = "/home/ian/.config/wmfs/icons/tb.png"
+theme.layout_tileleft   = "/usr/share/awesome/themes/default/layouts/tileleftw.png"
+--theme.layout_tileleft   = "/home/ian/.config/wmfs/icons/tl.png"
+theme.layout_tile = "/usr/share/awesome/themes/default/layouts/tilew.png"
+--theme.layout_tile = "/home/ian/.config/wmfs/icons/tr.png"
+theme.layout_tiletop = "/usr/share/awesome/themes/default/layouts/tiletopw.png"
+--theme.layout_tiletop = "/home/ian/.config/wmfs/icons/tt.png"
 theme.layout_spiral  = "/usr/share/awesome/themes/default/layouts/spiralw.png"
 theme.layout_dwindle = "/usr/share/awesome/themes/default/layouts/dwindlew.png"
 
-theme.awesome_icon = "/usr/share/awesome/icons/awesome16.png"
+--theme.awesome_icon = "/usr/share/awesome/icons/awesome16.png"
 --theme.awesome_icon = "/home/ian/.config/awesome/themes/phoenix/arch16.png"
+theme.awesome_icon = "/home/ian/.config/awesome/themes/green/awesome_icon.png"
 
 return theme
 -- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80
