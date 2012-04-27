@@ -1,0 +1,208 @@
+
+submenu = Accesories
+	icon = NULL
+	item=7-Zip FM
+	cmd="7zFM"
+	icon=NULL
+
+	item=HP Device Manager
+	cmd="hp-toolbox"
+	icon=NULL
+
+
+
+
+submenu = Graphics
+	icon = NULL
+	item=Geeqie
+	cmd="geeqie -r"
+	icon=NULL
+
+	item=GNU Image Manipulation Program
+	cmd="gimp-2.6"
+	icon=NULL
+
+	item=gThumb
+	cmd="gthumb"
+	icon=NULL
+
+	item=Import with gThumb
+	cmd="gthumb --import-photos"
+	icon=NULL
+
+
+
+
+
+submenu = Audio & Video
+	icon = NULL
+	item=VLC media player
+	cmd="/usr/bin/vlc"
+	icon=NULL
+
+	item=QT V4L2 test Utility
+	cmd="qv4l2"
+	icon=NULL
+
+
+
+
+submenu = Office
+	icon = NULL
+	item=LibreOffice
+	cmd="libreoffice"
+	icon=NULL
+
+	item=LibreOffice Calc
+	cmd="libreoffice --calc"
+	icon=NULL
+
+	item=LibreOffice Impress
+	cmd="libreoffice --impress"
+	icon=NULL
+
+	item=LibreOffice Writer
+	cmd="libreoffice --writer"
+	icon=NULL
+
+	item=Zathura
+	cmd="zathura"
+	icon=NULL
+
+
+
+
+submenu = Games
+	icon = NULL
+	item=Minecraft
+	cmd="minecraft"
+	icon=NULL
+
+	item=Pingus
+	cmd="pingus"
+	icon=NULL
+
+	item=World of Goo (demo)
+	cmd="worldofgoo-demo"
+	icon=NULL
+
+
+
+
+submenu = Network
+	icon = NULL
+	item=Dropbox
+	cmd="/opt/dropbox/dropboxd"
+	icon=NULL
+
+	item=Avahi SSH Server Browser
+	cmd="/usr/bin/bssh"
+	icon=NULL
+
+	item=Avahi VNC Server Browser
+	cmd="/usr/bin/bvnc"
+	icon=NULL
+
+	item=Opera
+	cmd="/usr/bin/opera"
+	icon=NULL
+
+	item=IcedTea Web Start
+	cmd="/usr/lib/jvm/java-6-openjdk/bin/javaws"
+	icon=NULL
+
+	item=Firefox
+	cmd="firefox"
+	icon=NULL
+
+	item=Luakit
+	cmd="luakit"
+	icon=NULL
+
+	item=Pidgin Internet Messenger
+	cmd="pidgin"
+	icon=NULL
+
+
+
+
+submenu = Development
+	icon = NULL
+	item=Qt Assistant
+	cmd="/usr/bin/assistant"
+	icon=NULL
+
+	item=Qt Designer
+	cmd="/usr/bin/designer"
+	icon=NULL
+
+	item=Qt Linguist
+	cmd="/usr/bin/linguist"
+	icon=NULL
+
+	item=OpenJDK Monitoring & Management Console
+	cmd="/usr/lib/jvm/java-6-openjdk/bin/jconsole"
+	icon=NULL
+
+	item=OpenJDK Policy Tool
+	cmd="/usr/lib/jvm/java-6-openjdk/bin/policytool"
+	icon=NULL
+
+	item=Emacs
+	cmd="emacs"
+	icon=NULL
+
+
+
+
+submenu = Settings
+	icon = NULL
+	item=Opera Widget Manager
+	cmd="/usr/bin/opera-widget-manager"
+	icon=NULL
+
+	item=Qt Config
+	cmd="/usr/bin/qtconfig"
+	icon=NULL
+
+	item=IcedTea Web Control Panel
+	cmd="/usr/lib/jvm/java-6-openjdk/bin/itweb-settings"
+	icon=NULL
+
+	item=Adobe Flash Player
+	cmd="flash-player-properties"
+	icon=NULL
+
+
+
+
+submenu = System Tools
+	icon = NULL
+	item=Avahi Zeroconf Browser
+	cmd="/usr/bin/avahi-discover"
+	icon=NULL
+
+	item=Manage Printing
+	cmd="/usr/bin/xdg-open http://localhost:631/"
+	icon=NULL
+
+	item=dconf Editor
+	cmd="dconf-editor"
+	icon=NULL
+
+	item=rxvt-unicode
+	cmd="urxvt"
+	icon=NULL
+
+
+
+
+SEPARATOR
+#submenu = Openbox Settings
+#	icon = NULL
+#	MENU_OPENBOX
+
+item=Logout...
+cmd=/home/ok/bin/dmenu-powerbutton
+icon=NULL
+
