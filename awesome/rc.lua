@@ -9,8 +9,8 @@ require("naughty")
 -- Widget library
 require("vicious")
 -- customised version of vicious gmail widget
--- no longer needed, as conky now does this job
--- require("gmail")
+require("gmail")
+require("pqu")
 
 if awesome.startup_errors then
    naughty.notify({ preset = naughty.config.presets.critical,
@@ -80,81 +80,79 @@ end
 
 -- {{{ Autostart
 awful.util.spawn_with_shell("nitrogen --restore")
-awful.util.spawn_with_shell("/home/ian/bin/awesomeconky.sh")
+--awful.util.spawn_with_shell("/home/ian/bin/awesomeconky.sh")
 -- }}}
 -- {{{ Autostop
 awesome.add_signal("exit", function() awful.util.spawn("atexit.sh") end)
 -- }}}
 
--- {{{ Menu
--- Create a laucher widget and a main menu
-myawesomemenu = {
-   { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awful.util.getdir("config") .. "/rc.lua" },
-   { "restart", awesome.restart },
-   { "quit", awesome.quit }
-}
 
-myofficemenu = {
-   { "writer", "lowriter" },
-   { "calc", "localc" },
-   { "okular", "okular" }
-}
-
-mymediamenu = {
-   { "gimp", "gimp" },
-   { "k3b", "k3b" },
-   { "vlc", "vlc" }
-}
-
-mygamesmenu = {
-   { "kpatience", "kpatience" },
-   { "kBlackBox", "kblackbox" },
-   { "kMahjongg", "kmahjongg" },
-   { "kMines", "kmines" },
-   { "minecraft", "minecraft" }
-}
-
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-				{ "terminal", terminal },
-				{ "emacsclient", terminal .. " -e emacsclient -nw -e \"(transbg)\"" },
-				-- { "opera", "opera" },
-				{ "firefox", "firefox" },
-				{ "dolphin", "dolphin" },
-				{ "nitrogen", "nitrogen" },
-				{ "office", myofficemenu },
-				{ "media", mymediamenu },
-				{ "games", mygamesmenu },
-				--{ "Suspend", "kdialog --yesno 'Are you sure you want to suspend?' && sudo pm-suspend" },
-				{ "Log out", '/home/ian/bin/slrh.sh' }
-			    }
-                        })
-
-mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
-                                     menu = mymainmenu })
+-- {{{ Mouse bindings
+root.buttons(awful.util.table.join(
+				awful.button({ }, 3, function () mymainmenu:toggle() end),
+				awful.button({ }, 4, awful.tag.viewnext),
+				awful.button({ }, 5, awful.tag.viewprev)
+								  ))
 -- }}}
+
+-- {{{ Move Mouse Cursor out of the way
+--local moveMouseOnStartup = true
+--local moveMouseOnTiled = true
+local safeCoords = {x=210, y=0}
+local function moveMouse(x_co, y_co)
+   mouse.coords({ x=x_co, y=y_co })
+end
+-- }}}
+
+
+-- Optionally move the mouse when rc.lua is read (startup)
+if moveMouseOnStartup then
+   moveMouse(safeCoords.x, safeCoords.y)
+end
+
+-- Move the mouse out of the way when switching to tiled
+-- terminal/emacs tags
+if moveMouseOnTiled then
+   for s = 1, screen.count() do
+	  tags[1][1]:add_signal("property::selected", function (tag)
+							   moveMouse(safeCoords.x,safeCoords.y)
+												  end)
+	  tags[1][4]:add_signal("property::selected", function (tag)
+							   moveMouse(safeCoords.x, safeCoords.y)
+												  end)
+   end
+end
+
+-- The order of these 3 is important, and they must come before the wibox
+require ("menu")
+
+require ("keys")
+
+require ("rules")
+
 
 -- {{{ Wibox
 -- Create a textclock widget
-mytextclock = awful.widget.textclock({ align = "right" }, " %a %d %b, %H:%M ", 5)
+mytextclock = awful.widget.textclock({ align = "right" }, " %a %d %b, <span weight=\"bold\">%H:%M</span> ", 5)
 
 -- Gmail widgets 
--- NB: passing nil as 4th argument results in instantaneous updating,
--- but at a performance penalty for awesome overall.
---mygmail1 = widget({ type = "textbox" })
---vicious.register(mygmail1, vicious.widgets.gmail_custom, " ian ${count} ", 300, "/home/ian/.config/gmail_i_rc")
+mygmail1 = widget({ type = "textbox" })
+vicious.register(mygmail1, vicious.widgets.gmail_custom, " ian ${count} ", 300, { colour = beautiful.fg_focus, netrcfile = "/home/ian/.config/gmail_i_rc" })
 
--- customised version of the above widget to use a specified netrc file:
---mygmail2 = widget({ type = "textbox" })
---vicious.register(mygmail2, vicious.widgets.gmail_custom, " wolf ${count} ", 300, "/home/ian/.config/gmail_w_rc")
+mygmail2 = widget({ type = "textbox" })
+vicious.register(mygmail2, vicious.widgets.gmail_custom, " wolf ${count} ", 300, { colour = beautiful.fg_focus, netrcfile = "/home/ian/.config/gmail_w_rc" })
 
 -- CPU meter
---mycpu = widget({ type = "textbox" })
---vicious.register(mycpu, vicious.widgets.cpu, " cpu $1% ")
+mycpu = widget({ type = "textbox" })
+vicious.register(mycpu, vicious.widgets.cpu, " cpu $1% ")
 
 -- file system
---myfs = widget({ type = "textbox" })
---vicious.register(myfs, vicious.widgets.fs, " root ${/ used_p}% home ${/home used_p}% ")
+myfs = widget({ type = "textbox" })
+vicious.register(myfs, vicious.widgets.fs, " root ${/ used_p}% home ${/home used_p}% ")
+
+-- pacman updates
+mypqu = widget({ type = "textbox" })
+vicious.register(mypqu, vicious.widgets.pqu, " pac ${count} ", 600, { colour = beautiful.fg_focus })
 
 -- network traffic
 --netwidget = widget({ type = "textbox" })
@@ -164,12 +162,10 @@ mytextclock = awful.widget.textclock({ align = "right" }, " %a %d %b, %H:%M ", 5
 --batterywidget = widget({ type = "textbox" })
 --vicious.register(batterywidget, vicious.widgets.bat, " $1 $2 ($3) ", "BAT0")
 
--- holder for conky
-conky = widget({ type = "textbox" })
-
 -- separator
 separator = widget({ type = "textbox" })
 separator.text = " :: "
+
 -- spacer
 spacer = widget({ type = "textbox" })
 spacer.text = "  "
@@ -258,248 +254,17 @@ for s = 1, screen.count() do
 	  separator,
 	  s == 1 and mysystray or nil,
 	  separator,
-	  conky,
+	  mygmail1,
+	  mygmail2,
+	  mypqu,
+	  myfs,
+	  mycpu,
 	  mytasklist[s],
 	  layout = awful.widget.layout.horizontal.rightleft
    }
 end
 -- }}}
 
--- {{{ Mouse bindings
-root.buttons(awful.util.table.join(
-				awful.button({ }, 3, function () mymainmenu:toggle() end),
-				awful.button({ }, 4, awful.tag.viewnext),
-				awful.button({ }, 5, awful.tag.viewprev)
-								  ))
--- }}}
-
--- {{{ Move Mouse Cursor out of the way
---local moveMouseOnStartup = true
---local moveMouseOnTiled = true
-local safeCoords = {x=210, y=0}
-local function moveMouse(x_co, y_co)
-   mouse.coords({ x=x_co, y=y_co })
-end
--- }}}
-
-
--- Optionally move the mouse when rc.lua is read (startup)
-if moveMouseOnStartup then
-   moveMouse(safeCoords.x, safeCoords.y)
-end
-
--- Move the mouse out of the way when switching to tiled
--- terminal/emacs tags
-if moveMouseOnTiled then
-   for s = 1, screen.count() do
-	  tags[1][1]:add_signal("property::selected", function (tag)
-							   moveMouse(safeCoords.x,safeCoords.y)
-												  end)
-	  tags[1][4]:add_signal("property::selected", function (tag)
-							   moveMouse(safeCoords.x, safeCoords.y)
-												  end)
-   end
-end
-
--- {{{ Key bindings
-globalkeys = awful.util.table.join(
-   awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
-   awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
-   awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
-   
-   awful.key({ modkey,           }, "j",
-			 function ()
-				awful.client.focus.byidx( 1)
-				if client.focus then client.focus:raise() end
-			 end),
-   awful.key({ modkey,           }, "k",
-			 function ()
-				awful.client.focus.byidx(-1)
-				if client.focus then client.focus:raise() end
-			 end),
-   
-   -- Layout manipulation
-   awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
-   awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
-   --awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
-   --awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
-   awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
-   awful.key({ modkey,           }, "Tab",
-			 function ()
-				awful.client.focus.history.previous()
-				if client.focus then
-				   client.focus:raise()
-				end
-			 end),
-
-   -- volume control
-   awful.key({ modkey,		 }, "F10",    function () awful.util.spawn("amixer -q sset Master 1- unmute") end),
-   awful.key({ modkey,		 }, "F11",    function () awful.util.spawn("amixer -q sset Master toggle") end),
-   awful.key({ modkey,		 }, "F12",    function () awful.util.spawn("amixer -q sset Master 1+ unmute") end),
-   
-   -- misc applications
-   awful.key({ modkey,		 }, "f",      function () awful.util.spawn("firefox") end),
-   awful.key({ modkey,		 }, "t",      function () awful.util.spawn("dolphin") end),
-
-   -- Standard program
-   awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
-   awful.key({ modkey, "Shift"   }, "Return", function ()
-				awful.util.spawn("/home/ian/bin/emet") end),
-
-   awful.key({ modkey, "Shift"   }, "Escape", function ()
-   	   			awful.util.spawn("/home/ian/bin/slrh.sh") end),
-
-   awful.key({ modkey, "Control" }, "r", awesome.restart),
-   awful.key({ modkey, "Shift"   }, "q", awesome.quit),
-
-   awful.key({ modkey },			"b",	function ()
-				mywibox[mouse.screen].visible = not mywibox[mouse.screen].visible
-											end),
-   
-   awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
-   awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
-   awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)      end),
-   awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)      end),
-   awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1)         end),
-   awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
-   awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
-   awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
-   awful.key({ modkey, "Shift"   }, "f",     function ()
-				awful.layout.set(awful.layout.suit.floating, t) end),
-   awful.key({ modkey, "Shift"   }, "t",     function ()
-				awful.layout.set(awful.layout.suit.floating,  t) end),
-   
-   awful.key({ modkey, "Control" }, "n", awful.client.restore),
-   
-   awful.key({ modkey, "Control" }, "m",	function() moveMouse(safeCoords.x, safeCoords.y) end),
-   
-   -- Prompt
-   awful.key({ modkey },            "r",	function () mypromptbox[mouse.screen]:run() end),
-   awful.key({ modkey },			"m",	function () mymainmenu:show({keygrabber=true}) end),
-
-   -- dmenu prompt:
-   awful.key({ modkey },			"p",	function () 
-				awful.util.spawn("dmenu_run -i -nb '" ..
-								 string.sub(beautiful.bg_normal, 1, 7) ..
-								 "' -nf '" .. beautiful.fg_normal ..
-								 "' -sb '" .. string.sub(beautiful.bg_focus, 1, 7) ..
-								 "' -sf '" .. beautiful.fg_focus .. "'")
-										  end),
-   -- custom dmenu prompt:
-   awful.key({ modkey },			"w",	function ()
-				awful.util.spawn("/home/ian/bin/dmenu_custom.bash") end),
-
-   -- Lua prompt:
-   awful.key({ modkey }, "x",
-			 function ()
-				awful.prompt.run({ prompt = "Run Lua code: " },
-								 mypromptbox[mouse.screen].widget,
-								 awful.util.eval, nil,
-								 awful.util.getdir("cache") .. "/history_eval")
-			 end)
-								  )
-
-clientkeys = awful.util.table.join(
-   awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
-   awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
-   awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
-   awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
-   awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
-   awful.key({ modkey, "Shift"   }, "r",      function (c) c:redraw()                       end),
-   awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
-   awful.key({ modkey,           }, "n",
-			 function (c)
-				-- The client currently has the input focus, so it cannot be
-				-- minimized, since minimized clients can't have the focus.
-				c.minimized = true
-			 end),
-   awful.key({ modkey,           }, "m",
-			 function (c)
-				c.maximized_horizontal = not c.maximized_horizontal
-				c.maximized_vertical   = not c.maximized_vertical
-			 end)
-								  )
-
--- Compute the maximum number of digit we need, limited to 9
-keynumber = 0
-for s = 1, screen.count() do
-   keynumber = math.min(9, math.max(#tags[s], keynumber));
-end
-
--- Bind all key numbers to tags.
--- Be careful: we use keycodes to make it works on any keyboard layout.
--- This should map on the top row of your keyboard, usually 1 to 9.
-for i = 1, keynumber do
-   globalkeys = awful.util.table.join(globalkeys,
-									  awful.key({ modkey }, "#" .. i + 9,
-												function ()
-												   local screen = mouse.screen
-												   if tags[screen][i] then
-													  awful.tag.viewonly(tags[screen][i])
-												   end
-												end),
-									  awful.key({ modkey, "Control" }, "#" .. i + 9,
-												function ()
-												   local screen = mouse.screen
-												   if tags[screen][i] then
-													  awful.tag.viewtoggle(tags[screen][i])
-												   end
-												end),
-									  awful.key({ modkey, "Shift" }, "#" .. i + 9,
-												function ()
-												   if client.focus and tags[client.focus.screen][i] then
-													  awful.client.movetotag(tags[client.focus.screen][i])
-												   end
-												end),
-									  awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
-												function ()
-												   if client.focus and tags[client.focus.screen][i] then
-													  awful.client.toggletag(tags[client.focus.screen][i])
-												   end
-												end))
-end
-
-clientbuttons = awful.util.table.join(
-   awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
-   awful.button({ modkey }, 1, awful.mouse.client.move),
-   awful.button({ modkey }, 3, awful.mouse.client.resize))
-
--- Set keys
-root.keys(globalkeys)
--- }}}
-
--- {{{ Rules
-awful.rules.rules = {
-   -- All clients will match this rule.
-   { rule = { },
-	 properties = { border_width = beautiful.border_width,
-					border_color = beautiful.border_normal,
-					focus = true,
-					keys = clientkeys,
-					size_hints_honor = false,
-					buttons = clientbuttons } },
-
-   { rule = { class = "gimp" },
-	 properties = { tag = tags[1][6],
-					floating = true } },
-   
-   { rule = { class = "Firefox" },
-	 properties = { tag = tags[1][2],
-                    floating = false } },
-   
-   { rule = { class = "Opera" },
-	 properties = { tag = tags[1][2] } },
-   
-   { rule = { class = "Okular" },
-	 properties = { tag = tags[1][5] } },
-
-   { rule = { class = "URxvt" },
-	 properties = { border_width = 2 } },
-
-   { rule = { class = "URxvt", instance = "MAILTO" },
-	 properties = { floating = true } }
-}
--- }}}
 
 -- {{{ Signals
 -- Signal function to execute when a new client appears.

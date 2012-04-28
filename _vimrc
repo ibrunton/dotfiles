@@ -43,6 +43,9 @@ autocmd FileType python setlocal softtabstop=4
 autocmd FileType python setlocal smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd FileType python setlocal tw=79
 
+autocmd FileType lua setlocal shiftwidth=4
+autocmd FileType lua setlocal tabstop=4
+
 autocmd FileType html setlocal shiftwidth=2
 autocmd FileType html setlocal tabstop=2
 
