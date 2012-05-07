@@ -16,6 +16,9 @@ awful.rules.rules = {
    { rule = { class = "Firefox" },
 	 properties = { tag = tags[1][2],
                     floating = false } },
+
+   { rule = { class = "Firefox", instance = "Save Image" },
+   	 properties = { floating = true } },
    
    { rule = { class = "Opera" },
 	 properties = { tag = tags[1][2] } },
@@ -27,7 +30,10 @@ awful.rules.rules = {
 	 properties = { border_width = 2 } },
 
    { rule = { class = "URxvt", instance = "MAILTO" },
-	 properties = { floating = true } }
+	 properties = { floating = true } },
+
+	--{ rule = { _NET_WM_WINDOW_TYPE = "_NET_WM_WINDOW_TYPE_DIALOG" },
+	--	properties = { floating = true } }
 }
 -- }}}
 

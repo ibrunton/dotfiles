@@ -7,7 +7,7 @@
 -- {{{ Grab environment
 local type = type
 local tonumber = tonumber
-local io = { popen = io.popen }
+local io = { popen = io.popen, open = io.open }
 local setmetatable = setmetatable
 local helpers = require("vicious.helpers")
 local string = {
@@ -41,7 +41,8 @@ local rss = {
 local feed = rss.inbox
 local mail = {
     ["{count}"]   = 0,
-    ["{subject}"] = "N/A"
+    ["{subject}"] = "N/A",
+    ["{inbox}"] = {"N/A"}
 }
 -- }}}
 
@@ -50,6 +51,7 @@ local mail = {
 local function worker(format, warg)
     -- Get info from the Gmail atom feed
     local f = io.popen("curl --connect-timeout 1 -m 3 -fs --netrc-file " .. warg.netrcfile .. " " .. feed[1])
+    local count = 0
 
     -- Could be huge don't read it all at once, info we are after is at the top
     for line in f:lines() do
@@ -58,27 +60,19 @@ local function worker(format, warg)
 
         -- Find subject tags
         local title = string.match(line, "<title>(.*)</title>")
-        -- If the subject changed then break out of the loop
-        if title ~= nil and not string.find(title, feed[2]) then
-            -- Check if we should scroll, or maybe truncate
-            --if warg then
-                --if type(warg) == "table" then
-                    --title = helpers.scroll(title, warg[1], warg[2])
-                --else
-                    --title = helpers.truncate(title, warg)
-                --end
-            --end
 
+        if title ~= nil and not string.find(title, feed[2]) then
+            count = count + 1
             -- Spam sanitize the subject and store
-            mail["{subject}"] = helpers.escape(title)
-            break
+            mail["{inbox}"][count] = helpers.escape (title)
         end
     end
-    f:close()
+    
+    local fout = io.open (warg.inbox)
+    fout:write (f:read ("*a"), "w+")
+    fout:close ()
 
-    if tonumber (mail["{count}"]) > 0 then
-    	    mail["{count}"] = "<span weight=\"bold\" color=\"" .. warg.colour .. "\">" .. mail["{count}"] .. "</span>"
-    end
+    f:close()
 
     return mail
 end

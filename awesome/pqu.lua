@@ -7,7 +7,7 @@
 local tonumber = tonumber
 local io = { popen = io.popen }
 local setmetatable = setmetatable
-local tabel = { insert = table.insert }
+local table = { insert = table.insert }
 --local string = { match = string.match }
 --local helpers = require ("vicious.helpers")
 -- }}}
@@ -17,25 +17,20 @@ module ("vicious.widgets.pqu")
 
 local pacman_info = {
 	["{count}"] = 0,
-	["{packages}"] = {}
+	["{packages}"] = {"N/A"}
 }
 
 local function worker (format, warg)
 	local f = io.popen ("pacman -Qu")
-	local count = 0;
+	local count = 0
 	
 	for line in f:lines () do
 		count = count + 1
---		table.insert (pacman_info["{packages}"], line)
+		pacman_info["{packages}"][count] = line
 	end
 	f:close ()
 
-	if count > 0 then
-		pacman_info["{count}"] = "<span weight=\"bold\" color=\"" .. warg.colour .. "\">" .. count .. "</span>"
-	else
-		pacman_info["{count}"] = count
-	end
-
+	pacman_info["{count}"] = count
 	return pacman_info
 end
 

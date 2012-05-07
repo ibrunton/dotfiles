@@ -77,10 +77,10 @@ globalkeys = awful.util.table.join(
    -- dmenu prompt:
    awful.key({ modkey },			"p",	function () 
 				awful.util.spawn("dmenu_run -i -nb '" ..
-								 string.sub(beautiful.bg_normal, 1, 7) ..
-								 "' -nf '" .. beautiful.fg_normal ..
-								 "' -sb '" .. string.sub(beautiful.bg_focus, 1, 7) ..
-								 "' -sf '" .. beautiful.fg_focus .. "'")
+								 string.sub(beautiful.dmenu_bg_normal, 1, 7) ..
+								 "' -nf '" .. beautiful.dmenu_fg_normal ..
+								 "' -sb '" .. string.sub(beautiful.dmenu_bg_focus, 1, 7) ..
+								 "' -sf '" .. beautiful.dmenu_fg_focus .. "'")
 										  end),
    -- custom dmenu prompt:
    awful.key({ modkey },			"w",	function ()
