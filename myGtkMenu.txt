@@ -19,7 +19,7 @@ submenu = Graphics
 	icon=NULL
 
 	item=GNU Image Manipulation Program
-	cmd="gimp-2.6"
+	cmd="gimp-2.8"
 	icon=NULL
 
 	item=gThumb
@@ -78,10 +78,6 @@ submenu = Games
 	cmd="minecraft"
 	icon=NULL
 
-	item=Pingus
-	cmd="pingus"
-	icon=NULL
-
 	item=World of Goo (demo)
 	cmd="worldofgoo-demo"
 	icon=NULL
@@ -111,12 +107,12 @@ submenu = Network
 	cmd="/usr/lib/jvm/java-6-openjdk/bin/javaws"
 	icon=NULL
 
-	item=Firefox
-	cmd="firefox"
+	item=dwb
+	cmd="dwb"
 	icon=NULL
 
-	item=Luakit
-	cmd="luakit"
+	item=Firefox
+	cmd="firefox"
 	icon=NULL
 
 	item=Pidgin Internet Messenger
@@ -192,6 +188,14 @@ submenu = System Tools
 
 	item=rxvt-unicode
 	cmd="urxvt"
+	icon=NULL
+
+	item=UXTerm
+	cmd="uxterm"
+	icon=NULL
+
+	item=XTerm
+	cmd="xterm"
 	icon=NULL
 
 

@@ -1,6 +1,5 @@
 URxvt.title: urxvt
-URxvt.foreground: White
-URxvt.borderColor: #555555
+URxvt.borderColor: #000000
 URxvt.geometry: 100x30
 URxvt.internalBorder: 0
 URxvt.eXTernalBorder: 0
@@ -9,47 +8,46 @@ URxvt.scrollBar: false
 URxvt.transparent: true
 URxvt.shading: 70
 URxvt.depth: 32
-URxvt.background: #333333
+URxvt.foreground: #e6e6e6
+URxvt.background: #000000
 !URxvt.background: rgba:0000/0000/0000/bbbb
 
 ! black/grey
-*color0:  #060203
-*color8:  #444444
+*color0:  #222222
+*color8:  #666666
 
 ! red
-*color1:  #c54200
-*color9:  #db703a
+*color1:  #e84f4f
+*color9:  #d23d3d
 
 ! green
-*color2:  #38b856
-!#667b24
-*color10: #17d193
-#70880b
+*color2:  #b7ce42
+*color10: #bde077
 
 ! yellow
-*color3:  #e3a100
-*color11: #e5be21
+*color3:  #fea63c
+*color11: #ffe863
 
 ! blue
-*color4:  #3856b8
-*color12: #1793d1
-!#1181ff
+*color4:  #66aabb
+*color12: #aaccbb
 
 ! magenta
-*color5:  #961fb5
-*color13: #b550d0
+*color5:  #b74163
+*color13: #e16a98
 
 ! cyan
-*color6:  #2e8fac
-*color14: #48a0b8
+*color6:  #6d878d
+*color14: #42717b
 
 ! grey/white
-*color7:  #c5e0e1
-*color16: #d9fdee
+*color7:  #dddddd
+*color16: #cccccc
 
 !urxvt.font: xft:Courier New:size=12
 !urxvt.font: xft:Terminus:size=12
 URxvt.font: xft:Tamsyn:size=12
+!URxvt.font: xft:Ohsnap.icons:size=12
 !urxvt.font: xft:DejaVuSansMono:size=10
 
 URxvt.perl-ext: default,url-select

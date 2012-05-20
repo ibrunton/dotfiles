@@ -17,10 +17,15 @@ update_interval 1
 
 default_color 8f8f8f
 color2 e0e0e0
+color3 4abcd4
 own_window_colour 262729
 
-use_xft yes
-xftfont ohsnap.icons:pixelsize=11
+#use_xft yes
+#xftfont ohsnap.icons:pixelsize=11
+#xftfont tamsyn:pixelsize=11
+use_xft no
+#font -*-terminusmodx.icons-medium-r-normal-*-12-*-*-*-*-*-ISO8859-1
+font -*-ohsnap.icons-medium-r-normal-*-11-79-100-100-C-60-ISO8859-1
 
 uppercase yes
 
@@ -30,9 +35,17 @@ use_spacer none
 minimum_size 1680 0
 
 TEXT
-${alignc}cpu $cpu%         root ${fs_used_perc /}%  home ${fs_used_perc /home}%         \
-PAC ${execi 600 pacman -Qu |wc -l}         \
-VOL ${execi 5 amixer sget Master|sed -ne 's/^.*Mono: .*\[\([0-9]*\)%\].*$/\1/p'}%         \
-WOLF ${execpi 300 python2 ~/bin/scripts/gmail_wolf.py}\
-  IAN ${execpi 300 python2 ~/bin/scripts/gmail_ian.py}         \
-${time %a %d %b}  $color2${time %H:%M}
+${if_existing /home/ian/.local/share/conky-on}\
+${alignc}\
+${execi 1800 echo -e \\xd1} \
+$cpu%         \
+${execi 1800 echo -e \\xce} \
+$mem ($memperc%)         \
+root ${fs_used_perc /}%  home ${fs_used_perc /home}%         \
+${execi 1800 echo -e \\xba} \
+${execpi 600 python2 ~/bin/pqu.py}         \
+${execi 1800 echo -e \\xed} \
+${execi 5 amixer sget Master|sed -ne 's/^.*Mono: .*\[\([0-9]*\)%\].*$/\1/p'}%         \
+wolf ${execpi 300 python ~/bin/gmail.py wolfshift}\
+  ian ${execpi 300 python ~/bin/gmail.py iandbrunton}         \
+${time %a %d %b}  $color2${time %H:%M}${endif}
