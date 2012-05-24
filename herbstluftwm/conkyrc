@@ -8,4 +8,5 @@ TEXT
 ${cpu}|\
 ${freq_g}|\
 ${mem}|\
-${memperc}
+${memperc}|\
+${uptime}

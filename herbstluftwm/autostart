@@ -98,9 +98,9 @@ hc set window_gap 5
 hc set snap_distance 15
 
 # tiled tag layouts
-hc load 1 "(split horizontal:0.500000:0 (split vertical:0.500000:0 (clients vertical:0) (clients horizontal:0)) (clients horizontal:1))"
+hc load 1 "(split horizontal:0.500000:1 (split vertical:0.500000:0 (clients vertical:0) (clients horizontal:0)) (clients horizontal:0))"
 hc load 2 "(clients horizontal:0)"
-hc load 4 "(split horizontal:0.550000:1 (clients vertical:0) (clients horizontal:0))"
+hc load 4 "(split horizontal:0.550000:0 (clients vertical:0) (clients horizontal:0))"
 
 # floating tags
 hc floating 3 on
@@ -123,3 +123,9 @@ hc rule class=URxvt instance=MAILTO pseudotile=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_DIALOG' pseudotile=on
 hc rule class=Kdialog pseudotile=on
 hc rule class=sxiv pseudotile=on
+
+# unlock
+hc unlock
+
+# panel
+$XDG_CONFIG_HOME/restartpanels.sh

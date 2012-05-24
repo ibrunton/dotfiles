@@ -23,6 +23,7 @@ IFS='|'
 CPULoad=0
 MemPerc=0
 MemUsed=0
+Uptime=0
 
 PacmanCount=0
 MailWCount=0
@@ -64,9 +65,26 @@ printDateTime () {
 	return
 }
 
+printBinaryTime () {
+	echo -n $($HOME/bin/binclock -0 . -1 : -s ' ' -o)
+	return
+}
+
+printUptime () {
+	Uptime=$(echo $Uptime | sed 's/ [0-9]\{1,2\}s//' | sed 's/ \([0-9]\)\([a-z]\)/ 0\1\2/g')
+	#Uptime=$(uptime | cut -d ' ' -f 4 | \
+	#	sed 's/\([0-9]\{1,2\}\):\([0-9]\{2\}\)/\1h \2m/' | sed 's/,//')
+	echo -n "^fg()Up: ^fg($DZEN_FG2)$Uptime^fg()"
+	return
+}
+
 getGmailInfo () {
 	MailWCount=$(python $HOME/bin/gmail.py wolfshift)
 	MailICount=$(python $HOME/bin/gmail.py iandbrunton)
+
+	# errors:
+	[[ $MailWCount -lt 0 ]] && MailWCount="^fg($CRIT)$MailWCount^fg()"
+	[[ $MailICount -lt 0 ]] && MailICount="^fg($CRIT)$MailICount^fg()"
 
 	[[ $MailWCount -gt 0 ]] && MailWCount="^fg($DZEN_FG3)$MailWCount^fg()"
 	[[ $MailICount -gt 0 ]] && MailICount="^fg($DZEN_FG3)$MailICount^fg()"
@@ -103,11 +121,12 @@ printSpace () {
 	return
 }
 
-
 function printDzen () {
 	while true; do
-		read CPULoad CPUFreq MemUsed MemPerc
+		read CPULoad CPUFreq MemUsed MemPerc Uptime
 
+		printUptime
+		printSpace
 		printCPUInfo
 		printSpace
 		printMemInfo
