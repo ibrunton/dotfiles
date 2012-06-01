@@ -18,7 +18,7 @@ update_interval 1
 default_color 8f8f8f
 color2 e0e0e0
 color3 4abcd4
-own_window_colour 262729
+own_window_colour 000000
 
 #use_xft yes
 #xftfont ohsnap.icons:pixelsize=11
@@ -27,7 +27,7 @@ use_xft no
 #font -*-terminusmodx.icons-medium-r-normal-*-12-*-*-*-*-*-ISO8859-1
 font -*-ohsnap.icons-medium-r-normal-*-11-79-100-100-C-60-ISO8859-1
 
-uppercase yes
+uppercase no
 
 override_utf8_locale yes
 
@@ -37,15 +37,11 @@ minimum_size 1680 0
 TEXT
 ${if_existing /home/ian/.local/share/conky-on}\
 ${alignc}\
-${execi 1800 echo -e \\xd1} \
 $cpu%         \
-${execi 1800 echo -e \\xce} \
 $mem ($memperc%)         \
-root ${fs_used_perc /}%  home ${fs_used_perc /home}%         \
-${execi 1800 echo -e \\xba} \
-${execpi 600 python2 ~/bin/pqu.py}         \
-${execi 1800 echo -e \\xed} \
+root ${fs_used_perc /}% / home ${fs_used_perc /home}%         \
 ${execi 5 amixer sget Master|sed -ne 's/^.*Mono: .*\[\([0-9]*\)%\].*$/\1/p'}%         \
+${execpi 600 python2 ~/bin/pqu.py}         \
 wolf ${execpi 300 python ~/bin/gmail.py wolfshift}\
   ian ${execpi 300 python ~/bin/gmail.py iandbrunton}         \
-${time %a %d %b}  $color2${time %H:%M}${endif}
+$color2${time %a %d %b}$color / $color2${time %H}$color:$color2${time %M}${endif}

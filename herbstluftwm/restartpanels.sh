@@ -3,7 +3,7 @@
 installdir=/
 
 XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
-defaultpanel="$XDG_CONFIG_HOME/herbstluftwm/panel.sh"
+defaultpanel=$XDG_CONFIG_HOME/herbstluftwm/panel.sh
 
 [ -x "$defaultpanel" ] || defaultpanel=$installdir/etc/xdg/herbstluftwm/panel.sh
 

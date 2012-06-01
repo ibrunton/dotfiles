@@ -9,6 +9,10 @@ submenu = Accesories
 	cmd="hp-toolbox"
 	icon=NULL
 
+	item=File Manager
+	cmd="pcmanfm"
+	icon=NULL
+
 
 
 
@@ -119,6 +123,10 @@ submenu = Network
 	cmd="pidgin"
 	icon=NULL
 
+	item=Skype
+	cmd="skype"
+	icon=NULL
+
 
 
 
@@ -169,6 +177,10 @@ submenu = Settings
 	cmd="flash-player-properties"
 	icon=NULL
 
+	item=Preferred Applications
+	cmd="libfm-pref-apps"
+	icon=NULL
+
 
 
 
@@ -186,8 +198,16 @@ submenu = System Tools
 	cmd="dconf-editor"
 	icon=NULL
 
-	item=rxvt-unicode
+	item=urxvt
 	cmd="urxvt"
+	icon=NULL
+
+	item=urxvt (tabbed)
+	cmd="urxvt-tabbed"
+	icon=NULL
+
+	item=urxvt (client)
+	cmd="urxvtc"
 	icon=NULL
 
 	item=UXTerm

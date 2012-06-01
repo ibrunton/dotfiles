@@ -12,7 +12,7 @@ hc emit_hook reload
 hc keyunbind --all
 hc mouseunbind
 
-# make room for conky
+# make room for dzen2 bar
 hc pad 0 10 0 0
 
 # variables
@@ -38,7 +38,7 @@ hc keybind $mod-Shift-p spawn $HOME/bin/dmenu_custom.bash
 hc keybind $mod-w spawn $browser
 hc keybind $mod-m spawn $HOME/bin/mygtkmenu.py
 hc keybind $mod-t spawn $file_manager
-hc keybind $mod-b spawn $HOME/bin/toggle_conky.sh
+hc keybind $mod-b emit_hook togglehidepanel
 
 # keybindings: tags
 TAG_NAMES=( {1..6} )
@@ -99,7 +99,7 @@ hc set snap_distance 15
 
 # tiled tag layouts
 hc load 1 "(split horizontal:0.500000:1 (split vertical:0.500000:0 (clients vertical:0) (clients horizontal:0)) (clients horizontal:0))"
-hc load 2 "(clients horizontal:0)"
+hc load 2 "(split horizontal:0.750000:0 (clients horizontal:0) (clients horizontal:1))"
 hc load 4 "(split horizontal:0.550000:0 (clients vertical:0) (clients horizontal:0))"
 
 # floating tags
@@ -128,4 +128,4 @@ hc rule class=sxiv pseudotile=on
 hc unlock
 
 # panel
-$XDG_CONFIG_HOME/restartpanels.sh
+$XDG_CONFIG_HOME/herbstluftwm/restartpanels.sh
