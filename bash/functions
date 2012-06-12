@@ -60,3 +60,9 @@ function bca() {
 	log "$1" :bca
 	log -T "$1" :bca
 }
+
+function tempalias() {
+	alias_name=$1
+	shift
+	alias $alias_name="$@ && unalias $alias_name"
+}

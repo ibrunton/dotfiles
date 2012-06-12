@@ -9,11 +9,13 @@ herbstclient pad $monitor $PANEL_PADDING
 
 TAGS=( $(herbstclient tag_status $monitor) )
 
+windowtitle=""
+
 # left side
 herbstclient --idle | while true ; do
 	# launcher:
-	echo -n "^ca(1,$HOME/bin/mygtkmenu.py)^fg($HI_FG)$ICON^fg()^ca()"
-	echo -n $spacer
+	#echo -n "^ca(1,$HOME/bin/mygtkmenu.py)^fg($HI_FG)$ICON^fg()^ca()"
+	echo -n "$spacer"
 
 	# tags list:
 	for i in "${TAGS[@]}" ; do
@@ -21,7 +23,7 @@ herbstclient --idle | while true ; do
 		case ${i:0:1} in
 			'#') # currently focused tag
 				#echo -n "^bg($selbg)^fg($selfg)"
-				echo -n "^fg($selbg)^ro(${box_width}x11)^ib(1)^p(-$box_width)"
+				echo -n "^fg($selbg)^ro(${box_width}x11)^ib(1)^p(-$box_width)^fg($selfg)"
 				;;
 			'+') # focused tag on unfocused monitor
 				echo -n "^bg()^fg()"
@@ -39,8 +41,13 @@ herbstclient --idle | while true ; do
 
 		echo -n "^ca(1,herbstclient focus_monitor $monitor && "'herbstclient use "'${i:1}'") '${i:1}" ^ca()"
 	done
-	echo "^bg()^fg()"
 
+	echo -n "^bg()^fg()"
+	echo -n "$spacer"
+	echo -n "$sep"
+	echo -n "$spacer"
+
+	echo "${windowtitle//^/^^}"
 
 	read line || break
 	cmd=( $line )
@@ -69,4 +76,4 @@ herbstclient --idle | while true ; do
 			windowtitle="${cmd[@]:2}"
 			;;
 	esac
-done | dzen2 -ta 'l' -x $X_LEFT -y $Y_POS -w $PANEL_WIDTH -h $PANEL_HEIGHT -fn $FONT -bg $PANEL_BG -fg $PANEL_FG -p 
+done | dzen2 -ta 'l' -x $X_LEFT -y $Y_POS -w $PANEL_WIDTH -h $PANEL_HEIGHT -fn $FONT -bg $PANEL_BG -fg $PANEL_FG -p

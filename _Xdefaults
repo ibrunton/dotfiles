@@ -6,7 +6,7 @@ URxvt.eXTernalBorder: 0
 URxvt.scrollBar_right: false
 URxvt.scrollBar: false
 URxvt.transparent: true
-URxvt.shading: 70
+URxvt.shading: 30
 URxvt.depth: 32
 URxvt.foreground: #e6e6e6
 URxvt.background: #000000

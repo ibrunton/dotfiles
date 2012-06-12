@@ -16,8 +16,8 @@ hc mouseunbind
 hc pad 0 10 0 0
 
 # variables
-colour_normal='#ae8451'
-colour_active='#f6ff00'
+colour_normal='#666666' #'#ae8451'
+colour_active='#426797' #'#f6ff00'
 terminal=urxvt
 emacs=emet
 file_manager=dolphin
@@ -56,7 +56,7 @@ done
 
 # keybindings: layout
 hc keybind $mod-Control-d remove
-hc keybind $mod-Space floating toggle
+hc keybind $mod-Shift-f floating toggle
 hc keybind $mod-a split horizontal 0.5
 hc keybind $mod-s split horizontal 0.33
 hc keybind $mod-z split vertical 0.5
@@ -65,8 +65,8 @@ hc keybind $mod-x split vertical 0.33
 # keybindings: resizing
 RESIZESTEP=0.05
 hc keybind $mod-Control-h resize left +$RESIZESTEP
-hc keybind $mod-Control-k resize down +$RESIZESTEP
-hc keybind $mod-Control-j resize up +$RESIZESTEP
+hc keybind $mod-Control-k resize up +$RESIZESTEP
+hc keybind $mod-Control-j resize down +$RESIZESTEP
 hc keybind $mod-Control-l resize right +$RESIZESTEP
 
 # keybindings: focus

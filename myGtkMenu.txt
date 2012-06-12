@@ -48,6 +48,10 @@ submenu = Audio & Video
 	cmd="qv4l2"
 	icon=NULL
 
+	item=Rockbox Utility
+	cmd="rbutil"
+	icon=NULL
+
 
 
 
@@ -84,6 +88,10 @@ submenu = Games
 
 	item=World of Goo (demo)
 	cmd="worldofgoo-demo"
+	icon=NULL
+
+	item=Zaz
+	cmd="zaz"
 	icon=NULL
 
 
@@ -196,6 +204,10 @@ submenu = System Tools
 
 	item=dconf Editor
 	cmd="dconf-editor"
+	icon=NULL
+
+	item=Htop
+	cmd="htop"
 	icon=NULL
 
 	item=urxvt

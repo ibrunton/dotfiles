@@ -17,6 +17,7 @@ hdd="(hdd)"
 volume="(vol)"
 pacman="(pacman)"
 mail="(mail)"
+dbstatus="(dropbox)"
 datetime="(datetime)"
 visible=1
 
@@ -68,7 +69,7 @@ function printHDD () {
 }
 
 function printVolume () {
-	vol_perc=$(amixer sget Master | sed -ne 's/^.*Mono: .*\[\([0-9]*\)%\].*$/\1/p')
+	#vol_perc=$(amixer sget Master | sed -ne 's/^.*Mono: .*\[\([0-9]*\)%\].*$/\1/p')
 	echo -n "^fg()Vol ^fg($DATA_FG)${vol_perc}%^fg()"
 	return
 }
@@ -91,6 +92,23 @@ function printMail () {
 	[[ $mail_i_count -gt 0 ]] && mail_i_count="^fg($HI_FG)$mail_i_count^fg()"
 
 	echo -n "^fg()Wolf $mail_w_count / Ian $mail_i_count"
+	return
+}
+
+function printDropbox () {
+	symbol="\\xb7"
+	case $dbstatus in
+		Upload*)
+			symbol="[^fg($DATA_FG)\\xDB^fg()]"
+			;;
+		Download*)
+			symbol="[^fg($DATA_FG)\\xDA^fg()]"
+			;;
+		*)
+			symbol="\\xb7"
+			;;
+	esac
+	echo -en $symbol
 	return
 }
 
@@ -119,16 +137,18 @@ function uniq_linebuffered() {
 	kill $childpid
 } 2> /dev/null | {
 	while true ; do
-		printUptime
-		printSpace
-		printCPU
-		printSpace
-		printMem
-		printSpace
+		#printUptime
+		#printSpace
+		#printCPU
+		#printSpace
+		#printMem
+		#printSpace
 		printHDD
 		printSpace
 		printVolume
 		printSpace
+		#printDropbox
+		#printSpace
 		printPacman
 		printSpace
 		printMail
@@ -153,10 +173,12 @@ function uniq_linebuffered() {
 				memperc=${cmd[@]:3:1}
 				root_fs=${cmd[@]:4:1}
 				home_fs=${cmd[@]:5:1}
-				pacman_count=${cmd[@]:6:1}
-				mail_w_count=${cmd[@]:7:1}
-				mail_i_count=${cmd[@]:8:1}
-				uptime=${cmd[@]:9}
+				vol_perc=${cmd[@]:6:1}
+				pacman_count=${cmd[@]:7:1}
+				mail_w_count=${cmd[@]:8:1}
+				mail_i_count=${cmd[@]:9:1}
+				uptime=${cmd[@]:10}
+				#dbstatus=$(dropbox status)
 				;;
 			quit_panel)
 				exit

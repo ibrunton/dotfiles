@@ -5,4 +5,4 @@ update_interval 1.0
 update_interval_on_battery 1.0
 
 TEXT
-conky ${cpu} ${mem} ${memperc} ${fs_used_perc /} ${fs_used_perc /home} ${execi 600 pacman -Qu | wc -l} ${execi 300 python ~/bin/gmail.py wolfshift} ${execi 300 python ~/bin/gmail.py iandbrunton} ${uptime}
+conky ${cpu} ${mem} ${memperc} ${fs_used_perc /} ${fs_used_perc /home} ${execi 1 amixer sget Master | sed -ne 's/^.*Mono: .*\[\([0-9]*\)%\].*$/\1/p'} ${execi 600 pacman -Qu | wc -l} ${execi 300 python ~/bin/gmail.py wolfshift} ${execi 300 python ~/bin/gmail.py iandbrunton} ${uptime}
